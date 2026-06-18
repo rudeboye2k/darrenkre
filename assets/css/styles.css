@@ -211,11 +211,14 @@ h3 { font-size: 1.25rem; }
 
 /* ---------- Service cards ---------- */
 .cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
 }
 .card {
+  flex: 0 1 320px;
+  text-align: center;
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -616,7 +619,8 @@ body.modal-open { overflow: hidden; }
 }
 
 @media (max-width: 560px) {
-  .cards, .listing-grid, .why-grid, .leadership, .building-grid { grid-template-columns: 1fr; }
+  .listing-grid, .why-grid, .leadership, .building-grid { grid-template-columns: 1fr; }
+  .card { flex-basis: 100%; }
   .press-img { max-height: 260px; }
   .bio-dialog { padding: 1.5rem; }
   .hero-content { padding: 4.5rem 0; }
