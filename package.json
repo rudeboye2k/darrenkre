@@ -1,0 +1,13 @@
+{
+  "name": "darrenkre",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Darren K Real Estate, LLC website + Cloudflare Worker",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

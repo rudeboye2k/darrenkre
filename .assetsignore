@@ -1,0 +1,12 @@
+/src
+/wrangler.toml
+/package.json
+/package-lock.json
+/node_modules
+/.assetsignore
+/.dev.vars
+/.wrangler
+/README.md
+/CLOUDFLARE-SETUP.md
+/.git
+/.gitignore

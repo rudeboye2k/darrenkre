@@ -299,9 +299,103 @@
         <p>Thinking of selling or refinancing? Get a complimentary property valuation from a broker who knows your neighborhood.</p>
       </div>
       <div class="value-actions">
-        <a class="btn btn-primary" href="assets/docs/home-valuation-form.pdf" target="_blank" rel="noopener">Get a Free Valuation</a>
+        <a class="btn btn-primary" href="#valuation">Get a Free Valuation</a>
         <a class="btn btn-ghost" href="#contact">Talk to Darren</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Valuation form -->
+  <section class="section valuation" id="valuation">
+    <div class="container valuation-wrap">
+      <div class="section-head">
+        <p class="eyebrow dark">Free Home Valuation</p>
+        <h2>Tell us about your property.</h2>
+        <p class="section-intro">Answer a few quick questions and Darren will personally follow up with a complimentary, no-obligation estimate of your home’s value.</p>
+      </div>
+
+      <form class="val-form" id="valuationForm" novalidate>
+        <fieldset>
+          <legend>Property</legend>
+          <div class="val-grid">
+            <label class="span-2">Property address
+              <input type="text" name="address" autocomplete="street-address" required />
+            </label>
+            <label>City
+              <input type="text" name="city" value="Brooklyn" autocomplete="address-level2" />
+            </label>
+            <label>ZIP code
+              <input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" />
+            </label>
+            <label>Property type
+              <select name="propertyType" required>
+                <option value="" selected disabled>Select…</option>
+                <option>House</option>
+                <option>Condo</option>
+                <option>Co-op</option>
+                <option>Multi-Family</option>
+                <option>Commercial</option>
+                <option>Land</option>
+              </select>
+            </label>
+            <label>Condition
+              <select name="condition">
+                <option value="" selected disabled>Select…</option>
+                <option>Excellent</option>
+                <option>Good</option>
+                <option>Fair</option>
+                <option>Needs work</option>
+              </select>
+            </label>
+            <label>Bedrooms
+              <input type="number" name="bedrooms" min="0" max="50" inputmode="numeric" />
+            </label>
+            <label>Bathrooms
+              <input type="number" name="bathrooms" min="0" max="50" step="0.5" inputmode="decimal" />
+            </label>
+            <label>Approx. square feet
+              <input type="number" name="squareFeet" min="0" inputmode="numeric" />
+            </label>
+            <label>Year built
+              <input type="number" name="yearBuilt" min="1800" max="2026" inputmode="numeric" />
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your contact information</legend>
+          <div class="val-grid">
+            <label>Full name
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label>Email
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label>Phone
+              <input type="tel" name="phone" autocomplete="tel" />
+            </label>
+            <label>I'm thinking of…
+              <select name="intent">
+                <option value="" selected disabled>Select…</option>
+                <option>Selling</option>
+                <option>Refinancing</option>
+                <option>Just curious</option>
+              </select>
+            </label>
+            <label class="span-2">Anything else we should know?
+              <textarea name="message" rows="3" placeholder="Recent renovations, special features, timeline…"></textarea>
+            </label>
+          </div>
+          <!-- honeypot: bots fill this; humans never see it -->
+          <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        </fieldset>
+
+        <div class="val-actions">
+          <button type="submit" class="btn btn-primary btn-block">Request My Valuation</button>
+          <p class="val-status" id="valStatus" role="status" aria-live="polite"></p>
+          <p class="form-note">Prefer a printable form? <a href="assets/docs/home-valuation-form.pdf" target="_blank" rel="noopener">Download the PDF</a> · or call <a href="tel:+17189191612">718.919.1612</a>.</p>
+        </div>
+      </form>
     </div>
   </section>
 
