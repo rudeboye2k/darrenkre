@@ -170,10 +170,24 @@
           renting, property management, consulting and mortgages — through well-trained,
           ethical and professional agents who put your goals first.
         </p>
-        <ul class="leadership">
-          <li><strong>Darren K. Pearson</strong> — Principal Broker &amp; CEO</li>
-          <li><strong>Lydia A. Berry Pearson</strong> — Chief Financial Officer</li>
-        </ul>
+        <div class="leadership">
+          <button type="button" class="leader" data-bio="darren" aria-haspopup="dialog">
+            <span class="leader-avatar" aria-hidden="true">DP</span>
+            <span class="leader-text">
+              <span class="leader-name">Darren K. Pearson</span>
+              <span class="leader-role">Principal Broker &amp; CEO</span>
+              <span class="leader-link">Read full bio →</span>
+            </span>
+          </button>
+          <button type="button" class="leader" data-bio="lydia" aria-haspopup="dialog">
+            <span class="leader-avatar" aria-hidden="true">LP</span>
+            <span class="leader-text">
+              <span class="leader-name">Lydia A. Berry Pearson</span>
+              <span class="leader-role">Chief Financial Officer</span>
+              <span class="leader-link">Read full bio →</span>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -327,6 +341,47 @@
       </div>
     </div>
   </footer>
+
+  <!-- Bio modals -->
+  <div class="bio-modal" id="bio-darren" role="dialog" aria-modal="true" aria-labelledby="bio-darren-title" hidden>
+    <div class="bio-backdrop" data-close></div>
+    <div class="bio-dialog" role="document">
+      <button type="button" class="bio-close" data-close aria-label="Close biography">&times;</button>
+      <div class="bio-head">
+        <span class="leader-avatar lg" aria-hidden="true">DP</span>
+        <div>
+          <h3 id="bio-darren-title">Darren K. Pearson</h3>
+          <p class="bio-role">Principal Broker &amp; Chief Executive Officer</p>
+        </div>
+      </div>
+      <div class="bio-body">
+        <p>An established entrepreneur, Darren K. Pearson has built five real estate businesses across Brooklyn and Queens, along with two distribution companies. They include <strong>Darren K. Real Estate, LLC</strong> — a HUD-certified, full-service firm that develops residential and commercial properties and handles sales, apartment rentals, mortgages, real estate consulting, and the management of apartment buildings, receivership properties and major commercial space; its <strong>Maintenance Division</strong>, providing janitorial, cleaning and garbage-removal services; <strong>DK Real Estate, LLC</strong>, handling construction and expediting for development; and <strong>Howard Avenue Development L.P.</strong>, formed for the acquisition, rehabilitation and development of quality housing in previously owned multi-dwelling buildings for low-, moderate- and middle-income families. He also founded <strong>Darren K Real Estate Distributors, Inc.</strong> and <strong>Green Conservation Technology Distributors, LLC</strong>.</p>
+        <p>Before entering real estate, Darren was an account executive at Amergold Corporation, a Wall Street commodities firm, and a fuel salesperson at Vanguard Oil Corporation — selling to Con Edison, PSE&amp;G, LILCO and government contracts. Within a year he was promoted to Director of Public Relations, where he headed the “Robert F. Kennedy Memorial” Home Oil Transfer Program, which provided fuel oil to needy families and non-profit organizations at discounted prices — sometimes at no cost. His success earned him a promotion to Vice President of Procurement and Industrial Sales for Vanco Oil Co., a Vanguard subsidiary.</p>
+        <p>Darren went on to serve as Real Estate Sales Manager for the Charles E. Simpson Real Estate Company, earning his broker’s license within one year before launching his own companies.</p>
+        <p>Darren is active in the Brooklyn and Manhattan communities as a former Chairman of the Men’s Caucus for Congressman Ed Towns, a member of 100 Black Men, Inc., and a member of former New York State Senator David Paterson’s Progressive Professional Network.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bio-modal" id="bio-lydia" role="dialog" aria-modal="true" aria-labelledby="bio-lydia-title" hidden>
+    <div class="bio-backdrop" data-close></div>
+    <div class="bio-dialog" role="document">
+      <button type="button" class="bio-close" data-close aria-label="Close biography">&times;</button>
+      <div class="bio-head">
+        <span class="leader-avatar lg" aria-hidden="true">LP</span>
+        <div>
+          <h3 id="bio-lydia-title">Lydia A. Berry Pearson</h3>
+          <p class="bio-role">Chief Financial Officer &amp; Managing Member</p>
+        </div>
+      </div>
+      <div class="bio-body">
+        <p>As Chief Financial Officer and Managing Member, Lydia provides leadership, administrative direction and strategic focus for all business plans and financial operations of the firm’s real estate management and development — including budgeting, forecasting, profit analysis and revenue/expense allocation. She manages payroll, human resources and benefits, and serves as liaison with attorneys, accounting staff, corporate and philanthropic sponsors, and government agencies for residential and commercial acquisitions. She also prepares monthly management and budget reports and supervises the general ledger, accounts payable and accounts receivable staff.</p>
+        <p>Previously, Lydia was a Business Manager at Ogilvy Public Relations Worldwide, preparing quarterly forecasts and annual budgets and advising on billing rates, contracts and recoveries for the Health and Medical Group. From 1983 to 1998 she held a range of financial roles at Empire Blue Cross and Blue Shield, responsible for lease acquisitions and budgets exceeding $200 million across the Legal, Marketing, Human Resources and Auditing divisions.</p>
+        <p>Lydia holds a Bachelor of Arts in Finance and Management from Simmons College in Boston, Massachusetts.</p>
+        <p>She is a member of the New York Coalition of 100 Black Women — where she served on the Executive Board as Third Vice-President and chaired the Membership and International Affairs Committees — and of the Delta Sigma Theta Sorority. She also mentors young women through Blue Nile Rites of Passage, Inc., a non-profit dedicated to the spiritual, cultural and moral character development of America’s youth.</p>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>
