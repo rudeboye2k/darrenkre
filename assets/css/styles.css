@@ -230,7 +230,7 @@ h3 { font-size: 1.25rem; }
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 12px;
-  margin-bottom: 1.1rem;
+  margin: 0 auto 1.1rem;
 }
 .card h3 { color: var(--navy); }
 .card p { color: var(--muted); margin: 0; }
