@@ -23,9 +23,27 @@ responsive, single-page design with up-to-date branding and contact details.
 ├── CNAME                 # Custom domain for GitHub Pages
 └── assets/
     ├── css/styles.css    # Styles (responsive, no build step)
-    ├── js/main.js        # Mobile nav + footer year
-    └── img/              # Hero & section imagery
+    ├── js/main.js        # Mobile nav, footer year, bio modals
+    ├── img/              # Hero, property, press & section imagery
+    └── docs/             # Source PDFs linked from the site
 ```
+
+## Content sources
+
+The site content was rebuilt from the original `darrenkre.com` archive. Notable
+items carried forward:
+
+- **Congressional Record tribute (2001):** a U.S. House of Representatives tribute
+  to Darren K. Pearson by Congressman Edolphus Towns — featured in the Recognition
+  section (`assets/docs/congressional-tribute-2001.pdf`).
+- **Daily News feature (1995), "Building Blocks of Future":** the press article
+  that gave the firm its mission motto (`assets/docs/daily-news-feature-1995.pdf`).
+- **Home valuation form** (`assets/docs/home-valuation-form.pdf`), linked from the
+  "What is your home worth?" call to action.
+- **1115 Herkimer** — an authentic Brooklyn property photo used in the listings.
+
+Dated 2009-era listing PDFs (specific addresses, stale prices) from the archive
+were intentionally left off the live site.
 
 ## Tech
 
