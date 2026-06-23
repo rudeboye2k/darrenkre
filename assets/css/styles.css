@@ -241,19 +241,20 @@ h3 { font-size: 1.45rem; font-weight: 600; }
 .section-intro { color: var(--muted); font-size: 1.08rem; font-weight: 300; }
 
 /* ---------- Service cards ---------- */
-.cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; }
-.card {
-  flex: 0 1 25%;
-  min-width: 260px;
-  text-align: left;
-  background: transparent;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
+}
+.card {
+  text-align: left;
+  background: transparent;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   padding: 2.2rem 2rem 2.4rem;
   transition: background 0.25s ease;
 }
-.cards .card:nth-child(4n) { border-right: 1px solid var(--line); }
-.cards .card:nth-last-child(-n+1) { border-bottom: 1px solid var(--line); }
 .card:hover { background: var(--cream); }
 .card-num {
   display: block;
@@ -456,8 +457,8 @@ body.modal-open { overflow: hidden; }
 .page-hero::before {
   content: "";
   position: absolute; inset: 0; z-index: 0;
-  background: url("../img/skyline.jpg") center/cover no-repeat;
-  filter: grayscale(60%);
+  background: url("../img/harbor-view.jpg") center/cover no-repeat;
+  filter: grayscale(100%) contrast(1.05);
 }
 .page-hero-overlay {
   position: absolute; inset: 0; z-index: 1;
@@ -588,8 +589,7 @@ body.modal-open { overflow: hidden; }
   .site-nav a:hover { color: var(--accent); }
   .site-nav a.nav-cta { border: 1px solid var(--ink); color: var(--ink); margin-top: 0.8rem; text-align: center; }
 
-  .card { flex: 0 1 50%; }
-  .cards .card:nth-child(4n) { border-right: 1px solid var(--line); }
+  .cards { grid-template-columns: repeat(2, 1fr); }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 0; }
   .trust-grid > div:nth-child(2) { border-right: 0; }
@@ -603,7 +603,7 @@ body.modal-open { overflow: hidden; }
 }
 
 @media (max-width: 580px) {
-  .card { flex: 0 1 100%; border-right: 1px solid var(--line); }
+  .cards { grid-template-columns: 1fr; }
   .listing-grid, .why-grid, .leadership, .building-grid { grid-template-columns: 1fr; }
   .building:nth-child(odd) { border-right: 0; }
   .why-item { border-top: 2px solid var(--ink); }
