@@ -18,6 +18,17 @@
     });
   }
 
+  // Header: transparent over the hero, solid once scrolled
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var onScroll = function () {
+      if (window.scrollY > 40) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
   // Keep the footer year current
   var year = document.getElementById('year');
   if (year) {
