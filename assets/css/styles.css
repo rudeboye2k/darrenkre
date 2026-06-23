@@ -16,7 +16,7 @@
   --accent: #9a7b4f;       /* restrained brass, used sparingly */
   --radius: 2px;
   --max: 1240px;
-  --font-head: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-head: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
@@ -43,13 +43,13 @@ a:hover { color: var(--accent); }
 h1, h2, h3 {
   font-family: var(--font-head);
   color: var(--ink);
-  line-height: 1.12;
-  margin: 0 0 0.5em;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  line-height: 1.08;
+  margin: 0 0 0.4em;
+  font-weight: 600;
+  letter-spacing: 0;
 }
-h2 { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 600; }
-h3 { font-size: 1.3rem; }
+h2 { font-size: clamp(2.4rem, 4.8vw, 3.8rem); font-weight: 500; }
+h3 { font-size: 1.45rem; font-weight: 600; }
 
 /* Eyebrow — small uppercase label */
 .eyebrow {
@@ -172,22 +172,31 @@ h3 { font-size: 1.3rem; }
 .hero {
   position: relative;
   color: #fff;
-  background: url("../img/harbor-view.jpg") center/cover no-repeat;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
+.hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0;
+  background: url("../img/harbor-view.jpg") center/cover no-repeat;
+  transform-origin: center;
+  animation: heroZoom 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 .hero-overlay {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(180deg, rgba(10,12,16,0.55) 0%, rgba(10,12,16,0.35) 45%, rgba(10,12,16,0.72) 100%);
 }
-.hero-content { position: relative; max-width: 880px; padding: 8rem 0 5rem; }
+.hero-content { position: relative; z-index: 2; max-width: 900px; padding: 8rem 0 5rem; }
 .hero .eyebrow { color: rgba(255,255,255,0.85); }
 .hero h1 {
   color: #fff;
   font-weight: 500;
-  font-size: clamp(2.6rem, 6vw, 5rem);
-  line-height: 1.05;
+  font-size: clamp(3rem, 6.5vw, 5.6rem);
+  line-height: 1.04;
   margin-bottom: 1.4rem;
 }
 .hero-lead { font-size: 1.18rem; color: rgba(255,255,255,0.92); max-width: 620px; font-weight: 300; }
@@ -451,6 +460,77 @@ body.modal-open { overflow: hidden; }
 .footer-bottom .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
 .footer-bottom p { margin: 0; font-size: 0.74rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
 
+/* ---------- Scroll-reveal animation ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ---------- Featured listing ---------- */
+.feature-listing { background: var(--paper); }
+.fl-card {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+.fl-media {
+  position: relative;
+  min-height: 440px;
+  background: linear-gradient(160deg, #1b1a16 0%, #2c2a24 100%);
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+  overflow: hidden;
+}
+.fl-card:hover .fl-media { filter: grayscale(0%); }
+.fl-media.is-placeholder { display: grid; place-items: center; filter: none; }
+.fl-media .fl-placeholder {
+  text-align: center; color: rgba(255,255,255,0.5);
+  text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.72rem;
+}
+.fl-body { padding: clamp(2rem, 4vw, 3.4rem); display: flex; flex-direction: column; justify-content: center; }
+.fl-loc { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.72rem; font-weight: 600; color: var(--accent); margin: 0 0 0.8rem; }
+.fl-addr { font-size: clamp(1.9rem, 3.2vw, 2.7rem); font-weight: 500; margin: 0 0 0.4rem; }
+.fl-sub { color: var(--muted); margin: 0 0 1.5rem; font-weight: 300; }
+.fl-stats { list-style: none; display: flex; flex-wrap: wrap; gap: 0; margin: 0 0 1.6rem; padding: 1.2rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.fl-stats li { padding-right: 2rem; margin-right: 2rem; border-right: 1px solid var(--line); }
+.fl-stats li:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.fl-stats .fl-num { display: block; font-family: var(--font-head); font-size: 1.6rem; color: var(--ink); }
+.fl-stats .fl-lab { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); }
+.fl-desc { color: var(--muted); font-weight: 300; margin: 0 0 1.8rem; }
+.fl-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+.btn-dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-dark:hover { background: transparent; color: var(--ink); }
+.btn-dark-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-dark-ghost:hover { background: var(--ink); color: #fff; }
+
+/* ---------- Subtle animated sheen on dark CTA ---------- */
+.value-cta { position: relative; overflow: hidden; }
+.value-cta::after {
+  content: "";
+  position: absolute; top: -50%; left: -30%;
+  width: 60%; height: 200%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.05), transparent);
+  transform: skewX(-18deg);
+  animation: sheen 9s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes sheen { 0%, 100% { left: -40%; } 50% { left: 120%; } }
+.value-inner { position: relative; z-index: 1; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero::before { animation: none; }
+  .value-cta::after { animation: none; display: none; }
+  html { scroll-behavior: auto; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .nav-toggle { display: flex; }
@@ -479,6 +559,8 @@ body.modal-open { overflow: hidden; }
   .listing-grid { grid-template-columns: repeat(2, 1fr); }
   .value-inner { flex-direction: column; align-items: flex-start; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .fl-card { grid-template-columns: 1fr; }
+  .fl-media { min-height: 300px; }
 }
 
 @media (max-width: 580px) {

@@ -29,6 +29,28 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  // Scroll-reveal: gently fade/slide elements in as they enter the viewport
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var revealSelectors = [
+      '.section-head', '.card', '.listing', '.fl-card', '.press-card',
+      '.why-item', '.building', '.about-media', '.about-copy', '.value-inner'
+    ];
+    var revealEls = document.querySelectorAll(revealSelectors.join(','));
+    revealEls.forEach(function (el) { el.classList.add('reveal'); });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
   // Keep the footer year current
   var year = document.getElementById('year');
   if (year) {
