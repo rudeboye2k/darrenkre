@@ -493,7 +493,7 @@ body.modal-open { overflow: hidden; }
 .prose ul { margin: 0 0 1.4rem; padding-left: 1.2rem; color: var(--muted); font-weight: 300; font-size: 1.05rem; }
 .prose li { margin-bottom: 0.6rem; }
 .prose strong { color: var(--ink); font-weight: 600; }
-.prose a { color: var(--ink); border-bottom: 1px solid var(--accent); }
+.prose a:not(.btn) { color: var(--ink); border-bottom: 1px solid var(--accent); }
 .prose-cta { margin-top: 2.2rem; }
 
 /* Resources quick-index */
