@@ -403,27 +403,33 @@ body.modal-open { overflow: hidden; }
 
 /* ---------- Portfolio ---------- */
 .portfolio { background: var(--cream); }
-.building-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+.building-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
 .building {
-  display: flex; align-items: center; gap: 1rem;
-  background: transparent;
-  border-bottom: 1px solid var(--line);
-  padding: 1.2rem 1.4rem;
-  transition: background 0.2s ease;
+  display: flex; flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-.building:hover { background: var(--paper); }
-.building:nth-child(odd) { border-right: 1px solid var(--line); }
+.building:hover { box-shadow: 0 14px 34px rgba(20,19,15,0.14); transform: translateY(-3px); }
+.building-photo {
+  display: block;
+  aspect-ratio: 3 / 4;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease, transform 0.6s ease;
+}
+.building:hover .building-photo { filter: grayscale(0); transform: scale(1.05); }
 .building.is-office { background: var(--ink); }
 .building.is-office .building-addr { color: #fff; }
 .building.is-office .building-city { color: rgba(255,255,255,0.7); }
-.building-pin { font-size: 0.9rem; color: var(--accent); line-height: 1; }
-.building.is-office .building-pin { color: var(--accent); }
-.building-body { display: flex; flex-direction: column; line-height: 1.4; flex: 1 1 auto; }
-.building-addr { font-weight: 600; color: var(--ink); font-family: var(--font-head); }
-.building-city { font-size: 0.86rem; color: var(--muted); }
-.building-flag { margin-top: 0.25rem; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 700; color: var(--accent); }
-.building-map { flex: 0 0 auto; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; color: var(--accent); white-space: nowrap; }
-.building.is-office .building-map { color: #fff; }
+.building-body { display: flex; flex-direction: column; line-height: 1.4; flex: 1 1 auto; padding: 0.85rem 0.95rem; }
+.building-addr { font-weight: 600; color: var(--ink); font-family: var(--font-head); font-size: 1.02rem; }
+.building-city { font-size: 0.8rem; color: var(--muted); margin-top: 0.05rem; }
+.building-flag { margin-top: 0.3rem; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 700; color: var(--accent); }
+.building-map { margin-top: 0.55rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; color: var(--accent); white-space: nowrap; align-self: flex-start; }
+.building.is-office .building-map { color: var(--accent); }
 .portfolio-note { text-align: center; color: var(--muted); margin: 2.5rem 0 0; font-weight: 300; }
 
 /* ---------- Contact ---------- */
@@ -737,6 +743,7 @@ body.modal-open { overflow: hidden; }
   .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .press-grid { grid-template-columns: 1fr; }
   .listing-grid { grid-template-columns: repeat(2, 1fr); }
+  .building-grid { grid-template-columns: repeat(3, 1fr); }
   .value-inner { flex-direction: column; align-items: flex-start; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .fl-card { grid-template-columns: 1fr; }
@@ -745,10 +752,10 @@ body.modal-open { overflow: hidden; }
 
 @media (max-width: 580px) {
   .cards { grid-template-columns: 1fr; }
-  .listing-grid, .why-grid, .leadership, .building-grid, .res-links { grid-template-columns: 1fr; }
+  .listing-grid, .why-grid, .leadership, .res-links { grid-template-columns: 1fr; }
+  .building-grid { grid-template-columns: repeat(2, 1fr); }
   .fl-gallery { grid-template-columns: repeat(2, 1fr); }
   .fl-gallery--page .fl-shot { flex: 0 0 calc((100% - 10px) / 2); }
-  .building:nth-child(odd) { border-right: 0; }
   .why-item { border-top: 2px solid var(--ink); }
   .bio-dialog { padding: 1.5rem; }
   .press-img { max-height: 280px; }
