@@ -123,7 +123,7 @@ h3 { font-size: 1.45rem; font-weight: 600; }
   transition: color 0.3s ease;
 }
 
-.site-nav { display: flex; align-items: center; gap: 2.1rem; }
+.site-nav { display: flex; align-items: center; gap: 1.55rem; }
 .site-nav a {
   color: rgba(255,255,255,0.92);
   font-weight: 500;
@@ -484,6 +484,33 @@ body.modal-open { overflow: hidden; }
 /* About teaser (home) */
 .about-actions { margin-top: 1.8rem; }
 
+/* Interior page hero — shorter variant */
+.page-hero--short { min-height: 46vh; }
+
+/* Prose extras (Resources/guide pages) */
+.prose h3 { font-size: 1.55rem; font-weight: 600; color: var(--ink); margin: 2.4rem 0 0.6rem; }
+.prose h3:first-child { margin-top: 0; }
+.prose ul { margin: 0 0 1.4rem; padding-left: 1.2rem; color: var(--muted); font-weight: 300; font-size: 1.05rem; }
+.prose li { margin-bottom: 0.6rem; }
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose a { color: var(--ink); border-bottom: 1px solid var(--accent); }
+.prose-cta { margin-top: 2.2rem; }
+
+/* Resources quick-index */
+.resources-index { padding-bottom: 0; }
+.res-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); max-width: 880px; margin: 0 auto; }
+.res-link { display: flex; align-items: flex-start; gap: 1rem; padding: 1.8rem 1.8rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background 0.25s ease; }
+.res-link:hover { background: var(--cream); color: var(--ink); }
+.res-num { font-family: var(--font-head); font-size: 1.3rem; color: var(--accent); line-height: 1; }
+.res-link-text { display: flex; flex-direction: column; gap: 0.25rem; }
+.res-link-text strong { font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; color: var(--ink); }
+.res-link-text span { color: var(--muted); font-size: 0.95rem; font-weight: 300; }
+
+/* Article link rows (Articles page) */
+.article-links { display: flex; flex-wrap: wrap; gap: 1.4rem; }
+
+/* Interior page hero — shorter variant (end) */
+
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink); color: rgba(255,255,255,0.75); }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1.2fr 0.8fr; gap: 3rem; padding: 4rem 0 2.5rem; }
@@ -604,7 +631,7 @@ body.modal-open { overflow: hidden; }
 
 @media (max-width: 580px) {
   .cards { grid-template-columns: 1fr; }
-  .listing-grid, .why-grid, .leadership, .building-grid { grid-template-columns: 1fr; }
+  .listing-grid, .why-grid, .leadership, .building-grid, .res-links { grid-template-columns: 1fr; }
   .building:nth-child(odd) { border-right: 0; }
   .why-item { border-top: 2px solid var(--ink); }
   .bio-dialog { padding: 1.5rem; }
