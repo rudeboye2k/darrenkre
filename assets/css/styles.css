@@ -468,6 +468,7 @@ body.modal-open { overflow: hidden; }
 .page-hero .eyebrow { color: rgba(255,255,255,0.85); }
 .page-hero h1 { color: #fff; font-weight: 500; font-size: clamp(2.6rem, 5.5vw, 4.6rem); line-height: 1.05; margin-bottom: 1rem; }
 .page-hero-lead { font-size: 1.15rem; color: rgba(255,255,255,0.9); font-weight: 300; max-width: 620px; margin: 0; }
+.page-hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.8rem; }
 
 /* ---------- Prose + people (About page) ---------- */
 .prose { max-width: 760px; margin: 0 auto; }

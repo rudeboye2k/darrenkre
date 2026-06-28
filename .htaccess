@@ -1,0 +1,36 @@
+# Darren K Real Estate — Apache config (used by Plesk/GoDaddy Apache hosting)
+# Note: HTTPS redirection is intentionally NOT done here. Enable it from the
+# Plesk panel ("Permanent SEO-safe 301 redirect from HTTP to HTTPS") to avoid
+# redirect loops behind Plesk's nginx proxy. This file is ignored by the
+# Cloudflare Worker, so it is safe to keep in the repo for both deployments.
+
+# Custom error page
+ErrorDocument 404 /404.html
+
+# No directory listings
+Options -Indexes
+
+# Default document
+DirectoryIndex index.html
+
+# Browser caching for static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType text/html "access plus 1 day"
+</IfModule>
+
+# Light security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
