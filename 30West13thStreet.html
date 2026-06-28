@@ -89,20 +89,33 @@
         <h2>A closer look.</h2>
       </div>
       <div class="fl-gallery fl-gallery--page">
-        <a class="fl-shot" href="assets/listings/30West13thStreet/living-room-wide.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/living-room-wide.webp')" aria-label="Living room, wide view"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/living-room.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/living-room.webp')" aria-label="Living room"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/living-dining.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/living-dining.webp')" aria-label="Living and dining area"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/dining.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/dining.webp')" aria-label="Dining area"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/dining-kitchen.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/dining-kitchen.webp')" aria-label="Dining and kitchen"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/kitchen.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/kitchen.webp')" aria-label="Kitchen"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/bedroom.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/bedroom.webp')" aria-label="Bedroom"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/bedroom-2.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/bedroom-2.webp')" aria-label="Bedroom, alternate view"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/bathroom.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/bathroom.webp')" aria-label="Bathroom"></a>
-        <a class="fl-shot" href="assets/listings/30West13thStreet/laundry.webp" target="_blank" rel="noopener" style="background-image:url('assets/listings/30West13thStreet/laundry.webp')" aria-label="In-unit laundry"></a>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/living-room-wide.webp" style="background-image:url('assets/listings/30West13thStreet/living-room-wide.webp')" aria-label="Living room, wide view"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/living-room.webp" style="background-image:url('assets/listings/30West13thStreet/living-room.webp')" aria-label="Living room"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/living-dining.webp" style="background-image:url('assets/listings/30West13thStreet/living-dining.webp')" aria-label="Living and dining area"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/dining.webp" style="background-image:url('assets/listings/30West13thStreet/dining.webp')" aria-label="Dining area"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/dining-kitchen.webp" style="background-image:url('assets/listings/30West13thStreet/dining-kitchen.webp')" aria-label="Dining and kitchen"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/kitchen.webp" style="background-image:url('assets/listings/30West13thStreet/kitchen.webp')" aria-label="Kitchen"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/bedroom.webp" style="background-image:url('assets/listings/30West13thStreet/bedroom.webp')" aria-label="Bedroom"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/bedroom-2.webp" style="background-image:url('assets/listings/30West13thStreet/bedroom-2.webp')" aria-label="Bedroom, alternate view"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/bathroom.webp" style="background-image:url('assets/listings/30West13thStreet/bathroom.webp')" aria-label="Bathroom"></button>
+        <button class="fl-shot" type="button" data-full="assets/listings/30West13thStreet/laundry.webp" style="background-image:url('assets/listings/30West13thStreet/laundry.webp')" aria-label="In-unit laundry"></button>
       </div>
+      <p class="gallery-hint">Tap any photo to view the full gallery.</p>
       <p class="portfolio-note"><a href="index.html#listing">← Back to listings</a></p>
     </div>
   </section>
+
+  <!-- Photo lightbox / carousel -->
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo gallery">
+    <div class="lightbox-backdrop" data-close></div>
+    <div class="lightbox-stage">
+      <button class="lightbox-btn lightbox-close" type="button" data-close aria-label="Close gallery">&times;</button>
+      <button class="lightbox-btn lightbox-prev" type="button" aria-label="Previous photo">&#8249;</button>
+      <img class="lightbox-img" src="" alt="" />
+      <button class="lightbox-btn lightbox-next" type="button" aria-label="Next photo">&#8250;</button>
+      <p class="lightbox-counter"></p>
+    </div>
+  </div>
 
   <!-- Contact CTA -->
   <section class="value-cta">

@@ -78,6 +78,59 @@
     });
   }
 
+  // Photo gallery lightbox / carousel (listing pages)
+  var gallery = document.querySelector('.fl-gallery');
+  var lightbox = document.getElementById('lightbox');
+  if (gallery && lightbox) {
+    var shots = Array.prototype.slice.call(gallery.querySelectorAll('.fl-shot'));
+    var lbImg = lightbox.querySelector('.lightbox-img');
+    var lbCounter = lightbox.querySelector('.lightbox-counter');
+    var current = 0;
+    var lbLastFocused = null;
+
+    var showSlide = function (i) {
+      current = (i + shots.length) % shots.length;
+      var btn = shots[current];
+      lbImg.src = btn.getAttribute('data-full');
+      lbImg.alt = btn.getAttribute('aria-label') || '';
+      lbCounter.textContent = (current + 1) + ' / ' + shots.length;
+    };
+    var openLightbox = function (i) {
+      lbLastFocused = document.activeElement;
+      showSlide(i);
+      lightbox.hidden = false;
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      var nextBtn = lightbox.querySelector('.lightbox-next');
+      if (nextBtn) nextBtn.focus();
+    };
+    var closeLightbox = function () {
+      lightbox.hidden = true;
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      lbImg.src = '';
+      if (lbLastFocused) lbLastFocused.focus();
+    };
+
+    shots.forEach(function (btn, i) {
+      btn.addEventListener('click', function () { openLightbox(i); });
+    });
+    var prevBtn = lightbox.querySelector('.lightbox-prev');
+    var nextBtn = lightbox.querySelector('.lightbox-next');
+    if (prevBtn) prevBtn.addEventListener('click', function () { showSlide(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { showSlide(current + 1); });
+    lightbox.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', function () { closeLightbox(); });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (lightbox.hidden) return;
+      if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') showSlide(current - 1);
+      else if (e.key === 'ArrowRight') showSlide(current + 1);
+    });
+  }
+
   // Keep the footer year current
   var year = document.getElementById('year');
   if (year) {

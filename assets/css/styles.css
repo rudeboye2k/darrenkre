@@ -585,13 +585,19 @@ body.modal-open { overflow: hidden; }
 }
 .fl-shot {
   display: block;
+  width: 100%;
   aspect-ratio: 4 / 3;
   background-size: cover;
   background-position: center;
   background-color: var(--cream-2);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
   transition: transform 0.4s ease, opacity 0.3s ease;
 }
 .fl-shot:hover { opacity: 0.92; }
+.fl-shot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ---------- Dedicated listing page ---------- */
 .listing-hero {
@@ -625,7 +631,54 @@ body.modal-open { overflow: hidden; }
 .listing-detail .prose { text-align: left; }
 .prose .lead { font-size: 1.3rem; color: var(--ink); font-weight: 400; }
 .listing-detail .fl-actions { justify-content: center; margin-top: 2.2rem; }
-.fl-gallery--page { grid-template-columns: repeat(3, 1fr); }
+.fl-gallery--page { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin-left: auto; margin-right: auto; }
+.gallery-hint { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: 1.1rem; }
+
+/* ---------- Photo lightbox / carousel ---------- */
+.lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.5rem; }
+.lightbox[hidden] { display: none; }
+.lightbox-backdrop { position: absolute; inset: 0; background: rgba(8,9,12,0.93); animation: fade 0.2s ease; cursor: zoom-out; }
+.lightbox-stage {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center;
+  max-width: 1100px; width: 100%;
+  animation: pop 0.25s ease;
+}
+.lightbox-img {
+  max-width: 100%; max-height: 80vh;
+  object-fit: contain;
+  background: var(--cream-2);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+}
+.lightbox-counter {
+  color: rgba(255,255,255,0.78);
+  font-family: var(--font-body);
+  font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+  margin: 1.1rem 0 0;
+}
+.lightbox-btn {
+  position: absolute; z-index: 3;
+  display: grid; place-items: center;
+  width: 3rem; height: 3rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(20,19,15,0.45);
+  color: #fff; cursor: pointer;
+  border-radius: 50%;
+  font-size: 1.7rem; line-height: 1;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+.lightbox-btn:hover { background: var(--accent); border-color: var(--accent); }
+.lightbox-prev { left: -1.4rem; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: -1.4rem; top: 50%; transform: translateY(-50%); }
+.lightbox-prev:hover { transform: translateY(-50%) scale(1.06); }
+.lightbox-next:hover { transform: translateY(-50%) scale(1.06); }
+.lightbox-close { top: -3.6rem; right: 0; width: 2.7rem; height: 2.7rem; font-size: 1.6rem; }
+@media (max-width: 720px) {
+  .lightbox-prev { left: 0.35rem; }
+  .lightbox-next { right: 0.35rem; }
+  .lightbox-close { top: -3.1rem; right: 0.35rem; }
+}
 
 /* ---------- Subtle animated sheen on dark CTA ---------- */
 .value-cta { position: relative; overflow: hidden; }
