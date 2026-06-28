@@ -51,6 +51,33 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
+  // Contact form: open the visitor's mail client (Outlook, etc.) pre-filled
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+      var get = function (n) {
+        var el = contactForm.querySelector('[name="' + n + '"]');
+        return el ? el.value.trim() : '';
+      };
+      var name = get('name');
+      var subject = 'Website inquiry' + (name ? ' from ' + name : '');
+      var body =
+        'Name: ' + name + '\n' +
+        'Email: ' + get('email') + '\n' +
+        'Phone: ' + get('phone') + '\n\n' +
+        'Message:\n' + get('message') + '\n';
+      window.location.href =
+        'mailto:darren@darrenkre.com' +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+    });
+  }
+
   // Keep the footer year current
   var year = document.getElementById('year');
   if (year) {
