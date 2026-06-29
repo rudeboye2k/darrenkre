@@ -432,6 +432,22 @@ body.modal-open { overflow: hidden; }
 .building.is-office .building-map { color: var(--accent); }
 .portfolio-note { text-align: center; color: var(--muted); margin: 2.5rem 0 0; font-weight: 300; }
 
+/* ---------- Compliance / Fair Housing ---------- */
+.notice-list { list-style: none; margin: 1.6rem 0 0; padding: 0; }
+.notice-list li { border-top: 1px solid var(--line); }
+.notice-list li:last-child { border-bottom: 1px solid var(--line); }
+.notice-list a { display: flex; align-items: baseline; gap: 1rem; padding: 1.15rem 0.2rem; color: var(--ink); }
+.notice-list a:hover { color: var(--accent); }
+.notice-list a:hover .notice-title { color: var(--accent); }
+.notice-list .notice-main { flex: 1 1 auto; }
+.notice-list .notice-title { display: block; font-family: var(--font-head); font-weight: 600; font-size: 1.1rem; line-height: 1.3; }
+.notice-list .notice-desc { display: block; font-size: 0.86rem; color: var(--muted); margin-top: 0.25rem; }
+.notice-list .notice-ext { flex: 0 0 auto; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); white-space: nowrap; align-self: center; }
+.sop-list { margin: 1.4rem 0 0; padding: 0; list-style: none; counter-reset: sop; }
+.sop-list li { position: relative; padding: 0 0 1.4rem 2.6rem; counter-increment: sop; }
+.sop-list li::before { content: counter(sop, decimal-leading-zero); position: absolute; left: 0; top: 0; font-family: var(--font-head); font-size: 1.05rem; font-weight: 600; color: var(--accent); }
+.sop-list strong { display: block; font-family: var(--font-head); font-size: 1.08rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
 .contact-info .section-head { text-align: left; margin: 0 0 1.2rem; max-width: none; }
@@ -534,8 +550,14 @@ body.modal-open { overflow: hidden; }
 .footer-nav a { color: rgba(255,255,255,0.75); font-weight: 500; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.14em; }
 .footer-nav a:hover { color: #fff; }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,0.14); padding: 1.5rem 0; }
-.footer-bottom .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+.footer-bottom-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
 .footer-bottom p { margin: 0; font-size: 0.74rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+.footer-legal-links { display: flex; flex-wrap: wrap; gap: 0.55rem 1.3rem; margin: 1.6rem 0 0; }
+.footer-legal-links a { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.62); font-weight: 500; }
+.footer-legal-links a:hover { color: #fff; }
+.footer-bottom .footer-legal-text { margin: 1.1rem 0 0; font-size: 0.67rem; line-height: 1.7; color: rgba(255,255,255,0.4); text-transform: none; letter-spacing: 0.01em; max-width: 1040px; }
+.footer-bottom .footer-legal-text a { color: rgba(255,255,255,0.72); text-decoration: underline; }
+.footer-bottom .footer-legal-text a:hover { color: #fff; }
 
 /* ---------- Scroll-reveal animation ---------- */
 .reveal {
