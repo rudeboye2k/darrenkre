@@ -477,6 +477,16 @@ body.modal-open { overflow: hidden; }
 .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--ink); }
 .form-note { font-size: 0.85rem; color: var(--muted); margin: 1rem 0 0; text-align: center; font-weight: 300; }
 
+/* Contact pop-up (reuses bio-modal visuals) */
+.contact-modal { position: fixed; inset: 0; z-index: 150; display: grid; place-items: center; padding: 1.25rem; }
+.contact-modal[hidden] { display: none; }
+.contact-modal .contact-dialog { max-width: 480px; }
+.contact-modal-eyebrow { margin: 0; }
+.contact-modal-title { margin: 0.15rem 0 0.2rem; font-size: 1.55rem; line-height: 1.2; }
+.contact-modal-topic { margin: 0 0 1.4rem; font-size: 0.85rem; color: var(--muted); }
+.contact-modal-topic strong { color: var(--accent); font-weight: 600; }
+.contact-form--modal { background: none; border: 0; padding: 0; }
+
 /* ---------- Page hero (interior pages) ---------- */
 .page-hero {
   position: relative;

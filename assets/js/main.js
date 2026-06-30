@@ -75,6 +75,95 @@
         'mailto:darren@darrenkre.com' +
         '?subject=' + encodeURIComponent(subject) +
         '&body=' + encodeURIComponent(body);
+      contactForm.reset();
+    });
+  }
+
+  // Contact pop-up: one modal, opened by any [data-contact] button with a
+  // context-aware subject. Cleared and closed after the message is sent.
+  var contactModalHTML =
+    '<div class="contact-modal" id="contactModal" hidden role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">' +
+      '<div class="bio-backdrop" data-cm-close></div>' +
+      '<div class="bio-dialog contact-dialog">' +
+        '<button class="bio-close" type="button" data-cm-close aria-label="Close contact form">&times;</button>' +
+        '<p class="eyebrow dark contact-modal-eyebrow">Get in Touch</p>' +
+        '<h3 id="contactModalTitle" class="contact-modal-title">Send a message</h3>' +
+        '<p class="contact-modal-topic">Regarding: <strong data-cm-topic>Website Inquiry</strong></p>' +
+        '<form class="contact-form contact-form--modal" id="contactModalForm" novalidate>' +
+          '<label>Name<input type="text" name="name" required /></label>' +
+          '<label>Email<input type="email" name="email" required /></label>' +
+          '<label>Phone<input type="tel" name="phone" /></label>' +
+          '<label>How can we help?<textarea name="message" rows="4" placeholder="I\'m interested in..."></textarea></label>' +
+          '<button type="submit" class="btn btn-dark btn-block">Send Message</button>' +
+          '<p class="form-note">&ldquo;Send&rdquo; opens your email app with your message ready to go. Prefer to talk? Call <a href="tel:+17189191612">718.919.1612</a>.</p>' +
+        '</form>' +
+      '</div>' +
+    '</div>';
+
+  var contactTriggers = document.querySelectorAll('[data-contact]');
+  if (contactTriggers.length) {
+    var cmWrap = document.createElement('div');
+    cmWrap.innerHTML = contactModalHTML;
+    var contactModal = cmWrap.firstChild;
+    document.body.appendChild(contactModal);
+
+    var cmTopic = contactModal.querySelector('[data-cm-topic]');
+    var cmForm = contactModal.querySelector('#contactModalForm');
+    var cmSubject = 'Website Inquiry';
+    var cmLastFocused = null;
+
+    var openContact = function (subject) {
+      cmSubject = subject || 'Website Inquiry';
+      cmTopic.textContent = cmSubject;
+      cmLastFocused = document.activeElement;
+      contactModal.hidden = false;
+      document.body.classList.add('modal-open');
+      var first = cmForm.querySelector('input[name="name"]');
+      if (first) first.focus();
+    };
+    var closeContact = function () {
+      contactModal.hidden = true;
+      document.body.classList.remove('modal-open');
+      cmForm.reset();
+      if (cmLastFocused) cmLastFocused.focus();
+    };
+
+    contactTriggers.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openContact(btn.getAttribute('data-subject'));
+      });
+    });
+    contactModal.querySelectorAll('[data-cm-close]').forEach(function (el) {
+      el.addEventListener('click', function () { closeContact(); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!contactModal.hidden && e.key === 'Escape') closeContact();
+    });
+
+    cmForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!cmForm.checkValidity()) {
+        cmForm.reportValidity();
+        return;
+      }
+      var get = function (n) {
+        var el = cmForm.querySelector('[name="' + n + '"]');
+        return el ? el.value.trim() : '';
+      };
+      var name = get('name');
+      var subject = cmSubject + (name ? ' — ' + name : '');
+      var body =
+        'Name: ' + name + '\n' +
+        'Email: ' + get('email') + '\n' +
+        'Phone: ' + get('phone') + '\n' +
+        'Regarding: ' + cmSubject + '\n\n' +
+        'Message:\n' + get('message') + '\n';
+      window.location.href =
+        'mailto:darren@darrenkre.com' +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+      closeContact();
     });
   }
 
