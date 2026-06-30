@@ -431,6 +431,13 @@ body.modal-open { overflow: hidden; }
 .building-map { margin-top: 0.55rem; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; color: var(--accent); white-space: nowrap; align-self: flex-start; }
 .building.is-office .building-map { color: var(--accent); }
 .portfolio-note { text-align: center; color: var(--muted); margin: 2.5rem 0 0; font-weight: 300; }
+.eho-line { display: flex; align-items: center; justify-content: center; gap: 0.9rem; max-width: 760px; margin: 2.4rem auto 0; padding-top: 2rem; border-top: 1px solid var(--line); text-align: left; }
+.eho-logo { flex: 0 0 auto; width: 32px; height: 32px; color: var(--accent); }
+.eho-line span { font-size: 0.82rem; line-height: 1.55; color: var(--muted); }
+.eho-line strong { color: var(--ink); font-weight: 600; }
+.eho-line a { color: var(--accent); font-weight: 500; white-space: nowrap; }
+.eho-line a:hover { text-decoration: underline; }
+@media (max-width: 580px) { .eho-line { flex-direction: column; text-align: center; gap: 0.6rem; } }
 
 /* ---------- Compliance / Fair Housing ---------- */
 .notice-list { list-style: none; margin: 1.6rem 0 0; padding: 0; }
