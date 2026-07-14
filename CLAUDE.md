@@ -14,10 +14,10 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 ## Architecture & deploy
 
 - **Static HTML/CSS/JS. No build step, no framework.** Plain files served as-is.
-- Deployed two ways:
-  - **Cloudflare Worker** — `wrangler.jsonc` (`assets.directory: "."`). Preview at `https://darrenkre.edward-weir.workers.dev/`.
-  - **GoDaddy / Plesk** — `.htaccess` present; Plesk can pull from GitHub. Has PHP + email hosting.
-- **Open question:** which host serves production `darrenkre.com` (Plesk vs Cloudflare). This gates any server-side form work.
+- **Two live domains** (confirmed): 
+  - **darrenkre.com** — GoDaddy hosting via **Plesk**. Has PHP + email hosting. Updates only when Plesk **re-pulls from GitHub** — so it can lag behind `main` and serves **cached CSS/JS/images**. If a recent change (e.g., a CSS filter) doesn't appear on darrenkre.com, it's almost always stale Plesk cache, not a code bug. Server-side form work (PHP handler) would live here.
+  - **darrenkrealestate.com** — **Cloudflare** (Worker, `wrangler.jsonc`, `assets.directory: "."`). Auto-updates from GitHub. Preview: `https://darrenkre.edward-weir.workers.dev/`.
+- **Host-independence lesson:** don't rely on CSS/JS alone for a visual that must look identical on both hosts while Plesk may be stale — bake it into the asset when practical (e.g., Darren's bio photo is a **grayscale image file**, not a CSS `grayscale()` filter, so it's B&W even on cached Plesk CSS).
 - `git` default branch is **`main`**. Users sometimes upload images straight to GitHub ("Add files via upload" commits) — `git pull --rebase origin main` before working if a file is "missing" locally.
 
 ## Design system (luxury editorial)
