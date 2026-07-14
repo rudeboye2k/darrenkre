@@ -320,6 +320,8 @@ h3 { font-size: 1.45rem; font-weight: 600; }
   font-size: 1rem;
 }
 .leader-avatar.lg { width: 64px; height: 64px; font-size: 1.25rem; }
+.leader-avatar.person-photo { display: block; padding: 0; background: var(--cream-2); object-fit: cover; filter: grayscale(100%); }
+.person-head .leader-avatar { width: 100px; height: 100px; font-size: 1.55rem; }
 .leader-text { display: flex; flex-direction: column; line-height: 1.35; }
 .leader-name { font-family: var(--font-head); font-weight: 700; color: var(--ink); }
 .leader-role { font-size: 0.82rem; color: var(--muted); }
