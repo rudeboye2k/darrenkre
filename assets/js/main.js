@@ -167,6 +167,76 @@
     });
   }
 
+  // Open house announcement — elegant pop-up, shown once per browsing
+  // session and only through the event date (then it stops appearing).
+  (function () {
+    var OH_KEY = 'ohSeen-2026-07-19';
+    var deadline = new Date('2026-07-20T04:00:00Z'); // end of Jul 19, 2026 (ET)
+    var seen = false;
+    try { seen = sessionStorage.getItem(OH_KEY) === '1'; } catch (e) {}
+    if (seen || new Date() > deadline) return;
+
+    var html =
+      '<div class="oh-modal" id="ohModal" hidden role="dialog" aria-modal="true" aria-labelledby="ohTitle">' +
+        '<div class="oh-backdrop" data-oh-close></div>' +
+        '<div class="oh-dialog">' +
+          '<button class="bio-close oh-close" type="button" data-oh-close aria-label="Close announcement">&times;</button>' +
+          '<div class="oh-media" style="background-image:url(\'/assets/listings/30West13thStreet/main.webp\')"></div>' +
+          '<div class="oh-body">' +
+            '<p class="oh-eyebrow">Open House</p>' +
+            '<h2 class="oh-title" id="ohTitle">You&rsquo;re invited.</h2>' +
+            '<p class="oh-date">Sunday, July 19</p>' +
+            '<p class="oh-time">2:00 – 4:00 PM EST</p>' +
+            '<hr class="oh-rule" />' +
+            '<p class="oh-addr">30 West 13th Street, Residence 4A</p>' +
+            '<p class="oh-loc">Greenwich Village · Manhattan</p>' +
+            '<div class="oh-actions">' +
+              '<a class="btn btn-dark" href="/30West13thStreet.html">View the Listing</a>' +
+              '<button class="btn btn-dark-ghost" type="button" data-oh-rsvp>Contact Us</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    var wrap = document.createElement('div');
+    wrap.innerHTML = html;
+    var oh = wrap.firstChild;
+    document.body.appendChild(oh);
+
+    var ohLastFocused = null;
+    var markSeen = function () { try { sessionStorage.setItem(OH_KEY, '1'); } catch (e) {} };
+    var closeOH = function () {
+      oh.hidden = true;
+      document.body.classList.remove('modal-open');
+      markSeen();
+      if (ohLastFocused) ohLastFocused.focus();
+    };
+    var openOH = function () {
+      ohLastFocused = document.activeElement;
+      oh.hidden = false;
+      document.body.classList.add('modal-open');
+      var c = oh.querySelector('.oh-close');
+      if (c) c.focus();
+    };
+
+    oh.querySelectorAll('[data-oh-close]').forEach(function (el) {
+      el.addEventListener('click', function () { closeOH(); });
+    });
+    var rsvp = oh.querySelector('[data-oh-rsvp]');
+    if (rsvp) {
+      rsvp.addEventListener('click', function () {
+        closeOH();
+        if (typeof openContact === 'function') openContact('Open House — 30 West 13th St, 4A');
+        else window.location.href = '/index.html#contact';
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (!oh.hidden && e.key === 'Escape') closeOH();
+    });
+
+    window.setTimeout(openOH, 700);
+  })();
+
   // Photo gallery lightbox / carousel (listing pages)
   var gallery = document.querySelector('.fl-gallery');
   var lightbox = document.getElementById('lightbox');
