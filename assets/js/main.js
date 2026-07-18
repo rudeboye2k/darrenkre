@@ -170,6 +170,9 @@
   // Open house announcement — elegant pop-up, shown once per browsing
   // session and only through the event date (then it stops appearing).
   (function () {
+    // Skip on a listing detail page — no need to advertise a listing to
+    // someone already viewing it.
+    if (document.querySelector('.listing-hero')) return;
     var OH_KEY = 'ohSeen-2026-07-19';
     var deadline = new Date('2026-07-20T04:00:00Z'); // end of Jul 19, 2026 (ET)
     var seen = false;
@@ -333,11 +336,10 @@
     });
   });
 
-  // Photo gallery lightbox / carousel (listing pages)
-  var gallery = document.querySelector('.fl-gallery');
+  // Photo gallery lightbox / carousel (listing pages) — includes the floor plan
   var lightbox = document.getElementById('lightbox');
-  if (gallery && lightbox) {
-    var shots = Array.prototype.slice.call(gallery.querySelectorAll('.fl-shot'));
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.fl-shot, .floorplan-btn'));
+  if (lightbox && shots.length) {
     var lbImg = lightbox.querySelector('.lightbox-img');
     var lbCounter = lightbox.querySelector('.lightbox-counter');
     var current = 0;

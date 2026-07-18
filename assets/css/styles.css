@@ -773,8 +773,9 @@ body.modal-open { overflow: hidden; }
 .gallery-hint { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: 1.1rem; }
 .floorplan { margin: 3rem auto 0; max-width: 900px; text-align: center; }
 .floorplan-title { font-family: var(--font-head); font-size: 1.5rem; color: var(--ink); margin-bottom: 1.2rem; }
-.floorplan a { display: block; border: 1px solid var(--line); background: #fff; padding: 1.5rem; transition: box-shadow 0.3s ease; }
-.floorplan a:hover { box-shadow: 0 14px 34px rgba(20,19,15,0.12); }
+.floorplan-btn { display: block; width: 100%; border: 1px solid var(--line); background: #fff; padding: 1.5rem; cursor: pointer; transition: box-shadow 0.3s ease; }
+.floorplan-btn:hover { box-shadow: 0 14px 34px rgba(20,19,15,0.12); }
+.floorplan-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .floorplan img { display: block; width: 100%; height: auto; }
 .floorplan-note { margin-top: 0.9rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
 
