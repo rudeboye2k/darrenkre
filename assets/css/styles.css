@@ -765,6 +765,12 @@ body.modal-open { overflow: hidden; }
 }
 .fl-gallery--page .fl-shot { flex: 0 0 calc((100% - 20px) / 3); }
 .gallery-hint { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: 1.1rem; }
+.floorplan { margin: 3rem auto 0; max-width: 900px; text-align: center; }
+.floorplan-title { font-family: var(--font-head); font-size: 1.5rem; color: var(--ink); margin-bottom: 1.2rem; }
+.floorplan a { display: block; border: 1px solid var(--line); background: #fff; padding: 1.5rem; transition: box-shadow 0.3s ease; }
+.floorplan a:hover { box-shadow: 0 14px 34px rgba(20,19,15,0.12); }
+.floorplan img { display: block; width: 100%; height: auto; }
+.floorplan-note { margin-top: 0.9rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
 
 /* ---------- Photo lightbox / carousel ---------- */
 .lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.5rem; }
