@@ -697,6 +697,11 @@ body.modal-open { overflow: hidden; }
 }
 .listing-detail { max-width: 820px; margin: 0 auto; text-align: center; }
 .listing-stats { justify-content: center; margin: 0 auto 2.2rem; }
+.listing-loc { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem 0.9rem; margin: -0.6rem auto 2.4rem; color: var(--muted); font-size: 0.98rem; }
+.listing-loc svg { width: 17px; height: 17px; color: var(--accent); flex: 0 0 auto; }
+.listing-loc .loc-map { color: var(--accent); font-weight: 600; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; white-space: nowrap; padding-left: 0.9rem; border-left: 1px solid var(--line); }
+.listing-loc .loc-map:hover { text-decoration: underline; }
+@media (max-width: 560px) { .listing-loc .loc-map { border-left: 0; padding-left: 0; } }
 .listing-detail .prose { text-align: left; }
 .prose .lead { font-size: 1.3rem; color: var(--ink); font-weight: 400; }
 .prose h3 { font-family: var(--font-head); font-weight: 600; font-size: 1.4rem; color: var(--ink); margin: 2.2rem 0 0.8rem; }
