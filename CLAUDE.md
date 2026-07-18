@@ -9,6 +9,8 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 - **NYS broker license #:** 49PE1014348 (New York State **only** — do not add other states)
 - **Office:** 92 Ralph Avenue, Brooklyn, NY 11221 · Office 718.919.1612 · Cell 917.709.4285 · Fax 718.919.6360
 - **Email:** darren@darrenkre.com · **Domain:** darrenkre.com
+- **Hours:** Monday–Saturday, 11:00 AM – 7:00 PM EST (shown in the footer)
+- **Facebook:** https://www.facebook.com/profile.php?id=61575581998372 (icon in the footer)
 - **Principals:** Darren K. Pearson (broker) and Lydia (leadership)
 
 ## Architecture & deploy
@@ -65,7 +67,8 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 
 - **Darren to review the SOP** wording (ID / pre-approval / exclusive-agreement answers) — it's a draft using standard NYS defaults.
 - **Secure form submission** (free, self-hosted, no third party): recommended path is a **PHP handler on Plesk** using the domain mailbox — pending confirmation that production runs on Plesk. Cloudflare can't send email free.
-- Still needed from client: testimonials, business hours, social links. Optional: monochrome OG banner regen.
+- Still needed from client: testimonials. Optional: monochrome OG banner regen.
+- **Footer** now carries business hours + a Facebook social icon (all pages). **Listing pages** can include an **"Also Featured On"** section (`.listing-featured`) with StreetEasy + Facebook links and an embedded Facebook post (`.fb-embed`) — keeps the site synced with external listings.
 - Housekeeping: leftover `CNAME` file; a redundant `cloudflare/workers-autoconfig` branch could be deleted via GitHub UI.
 
 ## Workflow / validation
