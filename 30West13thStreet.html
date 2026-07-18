@@ -108,6 +108,67 @@
     </div>
   </section>
 
+  <!-- Mortgage estimator -->
+  <section class="section mortgage-section">
+    <div class="container">
+      <div class="mortgage" data-price="2225000">
+        <button class="mortgage-toggle" type="button" aria-expanded="false" aria-controls="mortgagePanel">
+          <span>Estimate My Mortgage</span>
+          <span class="mortgage-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="mortgage-panel" id="mortgagePanel" hidden>
+          <div class="mortgage-grid">
+            <div class="mortgage-result">
+              <div class="mortgage-donut">
+                <div class="donut-center">
+                  <span class="donut-label">Total Monthly</span>
+                  <span class="donut-total" data-total>$0</span>
+                </div>
+              </div>
+              <ul class="mortgage-legend">
+                <li><span class="legend-dot dot-pi"></span> Principal &amp; Interest <b data-pi>$0</b></li>
+                <li><span class="legend-dot dot-tax"></span> Property Taxes <b data-tax>$0</b></li>
+                <li><span class="legend-dot dot-cc"></span> Maintenance / Common Charges <b data-cc>$0</b></li>
+              </ul>
+            </div>
+            <div class="mortgage-inputs">
+              <label class="mfield">Home Price
+                <input type="text" inputmode="numeric" data-m="price" value="$2,225,000" />
+              </label>
+              <label class="mfield">Down Payment
+                <span class="mfield-row">
+                  <input type="text" inputmode="numeric" data-m="down" value="$445,000" />
+                  <input type="text" inputmode="numeric" data-m="downpct" value="20%" class="mfield-pct" aria-label="Down payment percent" />
+                </span>
+                <input type="range" min="0" max="100" step="1" value="20" data-m="downrange" class="mfield-range" aria-label="Down payment percent slider" />
+              </label>
+              <div class="mfield-two">
+                <label class="mfield">Term
+                  <select data-m="term">
+                    <option value="30">30 years</option>
+                    <option value="15">15 years</option>
+                  </select>
+                </label>
+                <label class="mfield">Interest
+                  <input type="text" inputmode="decimal" data-m="rate" value="6.99%" />
+                </label>
+              </div>
+              <div class="mfield-two">
+                <label class="mfield">Property Taxes <span class="mfield-hint">/ mo</span>
+                  <input type="text" inputmode="numeric" data-m="tax" value="$0" />
+                </label>
+                <label class="mfield">Maintenance <span class="mfield-hint">/ mo</span>
+                  <input type="text" inputmode="numeric" data-m="cc" value="$0" />
+                </label>
+              </div>
+            </div>
+          </div>
+          <p class="mortgage-note">Estimates are for illustration only — not a loan offer or financial advice. Actual rates, taxes and charges vary. As FHA mortgage specialists, <a href="index.html#contact" data-contact data-subject="Financing">talk to us about financing →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Gallery -->
   <section class="section listing-gallery-section">
     <div class="container">

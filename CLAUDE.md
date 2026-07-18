@@ -31,7 +31,7 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 
 - `index.html` — home (hero, services, about, why, home-value CTA, featured listing, portfolio, contact section, footer).
 - `about.html`, `articles.html`, `resources.html` — interior pages.
-- `30West13thStreet.html` — dedicated listing page (short URL, no hyphens; one page per listing going forward).
+- `30West13thStreet.html` — dedicated listing page (short URL, no hyphens; one page per listing going forward). **Every listing page must include the mortgage estimator** (`.mortgage` block with `data-price="<price>"`, no `$`/commas) and the full listing description — see Features.
 - `fair-housing.html` — Fair Housing & Compliance (notices, SOP, licensing).
 - `404.html` — uses **absolute** (`/path`) links; other pages use relative.
 - `assets/css/styles.css` — all styles (single file). `assets/js/main.js` — all JS (single IIFE, vanilla, ES5-style `var`).
@@ -49,6 +49,8 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 ## Features implemented
 
 - **Listing gallery** on `30West13thStreet.html`: centered flex grid (no tan empty cells), photos open an in-page **lightbox/carousel** (prev/next arrows, keyboard ←/→/Esc, counter, backdrop close, focus management).
+- **Mortgage estimator** (`.mortgage` block, wired in `main.js`): collapsible "Estimate My Mortgage" panel with a brass donut (Principal & Interest / Property Taxes / Maintenance) + Total Monthly, and inputs for home price, down payment ($/% synced with a slider), term (30/15), interest, and monthly taxes/maintenance. **Reusable — reads the price from `data-price`.** P&I uses the standard amortization formula (verified: $2.225M, 20% down, 30yr @ 6.99% → $11,830, matches industry calculators). **Add this block to every listing page**, with that listing's price. Taxes/maintenance default to `$0` (editable) until real figures are provided per listing.
+- **Open house pop-up** (`main.js`): elegant site-wide modal (listing photo + date/time/CTAs), shown once per session and auto-expiring after the event date (`OH_KEY` + `deadline` in code). Update or remove for future events.
 - **Portfolio**: photo-card grid of 10 buildings — **grayscale, turns full color on hover** (5-across desktop / 3 tablet / 2 mobile). 92 Ralph = "Head Office".
 - **Fair Housing & Compliance page** + site-wide footer legal block: official **government** notice links (NYS DOS, NYS DHR, NYC CCHR — always linked to source, never a third-party PDF), Darren's own **Standard Operating Procedure** (plus a link to the official NYS DOS SOP page), NYS license #, data-source/verification disclaimer, and anti-scam consumer notice. Adapted for **NY only** (no multi-state list, no machine-translation disclaimer).
 - **Equal Housing Opportunity** logo (`assets/img/equal-housing.svg`, `currentColor`) + "Fair Housing & Equal Opportunity" line near listings on home + listing page.

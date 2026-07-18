@@ -237,6 +237,88 @@
     window.setTimeout(openOH, 700);
   })();
 
+  // Mortgage estimator (listing pages). Reusable: reads the property price
+  // from the .mortgage element's data-price attribute.
+  var mort = document.querySelector('.mortgage');
+  if (mort) {
+    var mPanel = mort.querySelector('.mortgage-panel');
+    var mToggle = mort.querySelector('.mortgage-toggle');
+    var mDonut = mort.querySelector('.mortgage-donut');
+    var mEl = function (k) { return mort.querySelector('[data-m="' + k + '"]'); };
+    var mOut = function (k) { return mort.querySelector('[data-' + k + ']'); };
+    var fPrice = mEl('price'), fDown = mEl('down'), fPct = mEl('downpct'),
+        fRange = mEl('downrange'), fTerm = mEl('term'), fRate = mEl('rate'),
+        fTax = mEl('tax'), fCC = mEl('cc');
+
+    var mNum = function (v) { return parseFloat(String(v).replace(/[^0-9.]/g, '')) || 0; };
+    var mMoney = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+
+    var recalc = function () {
+      var price = mNum(fPrice.value);
+      var down = Math.min(mNum(fDown.value), price);
+      var rate = mNum(fRate.value) / 100 / 12;
+      var n = mNum(fTerm.value) * 12;
+      var loan = Math.max(price - down, 0);
+      var pi;
+      if (rate > 0) pi = loan * rate * Math.pow(1 + rate, n) / (Math.pow(1 + rate, n) - 1);
+      else pi = n > 0 ? loan / n : 0;
+      var tax = mNum(fTax.value), cc = mNum(fCC.value);
+      var total = pi + tax + cc;
+      mOut('total').textContent = mMoney(total);
+      mOut('pi').textContent = mMoney(pi);
+      mOut('tax').textContent = mMoney(tax);
+      mOut('cc').textContent = mMoney(cc);
+      if (total <= 0) {
+        mDonut.style.background = 'var(--line)';
+      } else {
+        var a = pi / total * 100, b = tax / total * 100;
+        mDonut.style.background =
+          'conic-gradient(var(--accent) 0 ' + a + '%, var(--ink) ' + a + '% ' + (a + b) +
+          '%, var(--muted) ' + (a + b) + '% 100%)';
+      }
+    };
+
+    var setPct = function (pctVal) {
+      var price = mNum(fPrice.value);
+      var pct = Math.max(0, Math.min(100, pctVal));
+      fDown.value = mMoney(price * pct / 100);
+      fPct.value = Math.round(pct) + '%';
+      fRange.value = Math.round(pct);
+      recalc();
+    };
+    var fromDown = function () {
+      var price = mNum(fPrice.value);
+      var pct = price > 0 ? Math.min(100, mNum(fDown.value) / price * 100) : 0;
+      fPct.value = Math.round(pct) + '%';
+      fRange.value = Math.round(pct);
+      recalc();
+    };
+
+    if (mToggle) {
+      mToggle.addEventListener('click', function () {
+        var open = mPanel.hidden;
+        mPanel.hidden = !open;
+        mToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        mort.classList.toggle('is-open', open);
+      });
+    }
+    fPrice.addEventListener('input', function () { setPct(mNum(fPct.value)); });
+    fDown.addEventListener('input', fromDown);
+    fPct.addEventListener('input', function () { setPct(mNum(fPct.value)); });
+    fRange.addEventListener('input', function () { setPct(mNum(fRange.value)); });
+    fTerm.addEventListener('change', recalc);
+    [fRate, fTax, fCC].forEach(function (f) { f.addEventListener('input', recalc); });
+    [fPrice, fDown, fTax, fCC].forEach(function (f) {
+      f.addEventListener('blur', function () { f.value = mMoney(mNum(f.value)); recalc(); });
+    });
+    fRate.addEventListener('blur', function () { fRate.value = mNum(fRate.value) + '%'; });
+
+    // Initialise from data-price, defaulting to a 20% down payment.
+    var dp = mort.getAttribute('data-price');
+    if (dp) fPrice.value = mMoney(mNum(dp));
+    setPct(mNum(fPct.value) || 20);
+  }
+
   // Photo gallery lightbox / carousel (listing pages)
   var gallery = document.querySelector('.fl-gallery');
   var lightbox = document.getElementById('lightbox');
