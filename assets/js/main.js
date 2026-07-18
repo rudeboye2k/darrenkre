@@ -319,6 +319,20 @@
     setPct(mNum(fPct.value) || 20);
   }
 
+  // Collapsible "read more" panels (e.g. the full listing description)
+  var revealToggles = document.querySelectorAll('.reveal-toggle');
+  revealToggles.forEach(function (btn) {
+    var panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!panel) return;
+    var label = btn.querySelector('.reveal-label');
+    btn.addEventListener('click', function () {
+      var open = panel.hidden;
+      panel.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (label) label.textContent = open ? 'Show less' : 'Read the full description';
+    });
+  });
+
   // Photo gallery lightbox / carousel (listing pages)
   var gallery = document.querySelector('.fl-gallery');
   var lightbox = document.getElementById('lightbox');
