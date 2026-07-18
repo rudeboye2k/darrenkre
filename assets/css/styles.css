@@ -778,6 +778,9 @@ body.modal-open { overflow: hidden; }
 .floorplan-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .floorplan img { display: block; width: 100%; height: auto; }
 .floorplan-note { margin-top: 0.9rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+.tour-frame { position: relative; width: 100%; max-width: 1000px; margin: 0 auto; aspect-ratio: 16 / 9; border: 1px solid var(--line); background: var(--ink); overflow: hidden; }
+.tour-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+@media (max-width: 560px) { .tour-frame { aspect-ratio: 4 / 3; } }
 
 /* ---------- Photo lightbox / carousel ---------- */
 .lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.5rem; }
