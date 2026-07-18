@@ -68,7 +68,7 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 - **Darren to review the SOP** wording (ID / pre-approval / exclusive-agreement answers) — it's a draft using standard NYS defaults.
 - **Secure form submission** (free, self-hosted, no third party): recommended path is a **PHP handler on Plesk** using the domain mailbox — pending confirmation that production runs on Plesk. Cloudflare can't send email free.
 - Still needed from client: testimonials. Optional: monochrome OG banner regen.
-- **Footer** now carries business hours + a Facebook social icon (all pages). **Listing pages** can include an **"Also Featured On"** section (`.listing-featured`) with StreetEasy + Facebook links and an embedded Facebook post (`.fb-embed`) — keeps the site synced with external listings.
+- **Footer** now carries business hours + a Facebook social icon (all pages). **Listing pages** include an **"Also Featured On"** section (`.listing-featured` → `.featured-links`) with StreetEasy + Facebook link buttons (listing post + open house) — keeps the site synced with external listings. (No embedded FB post — client felt it was too much on the page.)
 - Housekeeping: leftover `CNAME` file; a redundant `cloudflare/workers-autoconfig` branch could be deleted via GitHub UI.
 
 ## Workflow / validation
