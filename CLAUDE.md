@@ -8,18 +8,25 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 
 - **NYS broker license #:** 49PE1014348 (New York State **only** — do not add other states)
 - **Office:** 92 Ralph Avenue, Brooklyn, NY 11221 · Office 718.919.1612 · Cell 917.709.4285 · Fax 718.919.6360
-- **Email:** darren@darrenkre.com · **Domain:** darrenkre.com
+- **Email:** darren@darrenkrealestate.com · **Domain:** darrenkrealestate.com (primary, as of this domain migration — see below)
 - **Hours:** Monday–Saturday, 11:00 AM – 7:00 PM EST (shown in the footer)
 - **Facebook:** https://www.facebook.com/profile.php?id=61575581998372 (icon in the footer)
-- **Principals:** Darren K. Pearson (broker) and Lydia (leadership)
+- **Principals:** Darren K. Pearson (broker) and Lydia A. Berry Pearson, CFO (leadership) — lydia@darrenkrealestate.com (unconfirmed — placeholder, get from client)
+
+## Domain migration (in progress)
+
+- **darrenkrealestate.com is now the primary/canonical domain.** All emails (`darren@`, `lydia@`), the footer's website link, OG/Twitter meta, JSON-LD, `sitemap.xml`, and `robots.txt` were switched to it site-wide (from the old `darrenkre.com` and from the raw `darrenkre.edward-weir.workers.dev` preview).
+- **darrenkre.com is becoming an alias** — the client says it will 301-redirect to darrenkrealestate.com "before the end of the week." Until that redirect is confirmed live, don't assume darrenkre.com still serves the old site or its old mailbox — verify before relying on either.
+- **Open/unconfirmed:** whether the `darren@`/`lydia@darrenkrealestate.com` mailboxes actually exist and receive mail yet, and who hosts email once darrenkre.com is just a redirect (Plesk's PHP+email role may or may not carry over). Confirm with the client before treating either as live.
+- The `CNAME` file (leftover, otherwise-unused by this Cloudflare/Plesk deploy) now says `darrenkrealestate.com` for consistency.
 
 ## Architecture & deploy
 
 - **Static HTML/CSS/JS. No build step, no framework.** Plain files served as-is.
-- **Two live domains** (confirmed): 
-  - **darrenkre.com** — GoDaddy hosting via **Plesk**. Has PHP + email hosting. Updates only when Plesk **re-pulls from GitHub** — so it can lag behind `main` and serves **cached CSS/JS/images**. If a recent change (e.g., a CSS filter) doesn't appear on darrenkre.com, it's almost always stale Plesk cache, not a code bug. Server-side form work (PHP handler) would live here.
-  - **darrenkrealestate.com** — **Cloudflare** (Worker, `wrangler.jsonc`, `assets.directory: "."`). Auto-updates from GitHub. Preview: `https://darrenkre.edward-weir.workers.dev/`.
-- **Host-independence lesson:** don't rely on CSS/JS alone for a visual that must look identical on both hosts while Plesk may be stale — bake it into the asset when practical (e.g., Darren's bio photo is a **grayscale image file**, not a CSS `grayscale()` filter, so it's B&W even on cached Plesk CSS).
+- **Two live domains:**
+  - **darrenkrealestate.com** — **Cloudflare** (Worker, `wrangler.jsonc`, `assets.directory: "."`). Auto-updates from GitHub on every push — the reliable one. Raw Workers preview (same deployment): `https://darrenkre.edward-weir.workers.dev/` (no longer referenced anywhere in the site's own markup, now that OG/sitemap point at the custom domain).
+  - **darrenkre.com** — GoDaddy hosting via **Plesk**. Updates only when Plesk **re-pulls from GitHub** — so it can lag behind `main` and serve **cached CSS/JS/images/HTML**. If a recent change doesn't appear there, it's almost always stale Plesk cache, not a code bug. Becoming an alias/redirect to darrenkrealestate.com (see Domain migration above).
+- **Host-independence lesson:** don't rely on CSS/JS alone for a visual that must look identical on both hosts while Plesk may be stale — bake it into the asset when practical (e.g., Darren's bio photo is a **grayscale image file**, not a CSS `grayscale()` filter, so it's B&W even on cached Plesk CSS). This matters less once darrenkre.com is a pure redirect, since visitors land on the fresh Cloudflare copy either way.
 - `git` default branch is **`main`**. Users sometimes upload images straight to GitHub ("Add files via upload" commits) — `git pull --rebase origin main` before working if a file is "missing" locally.
 
 ## Design system (luxury editorial)
@@ -65,10 +72,12 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 ## Open items / awaiting client
 
 - **Darren to review the SOP** wording (ID / pre-approval / exclusive-agreement answers) — it's a draft using standard NYS defaults.
-- **Secure form submission** (free, self-hosted, no third party): recommended path is a **PHP handler on Plesk** using the domain mailbox — pending confirmation that production runs on Plesk. Cloudflare can't send email free.
+- **Confirm the new mailboxes are live**: `darren@darrenkrealestate.com` and `lydia@darrenkrealestate.com` need to actually exist and receive mail before the site's mailto links / Gmail signatures are fully trustworthy. Get Lydia's real email (and any direct phone) to replace the placeholder used in her signature.
+- **Confirm darrenkre.com → darrenkrealestate.com redirect** goes live as planned; once it does, re-test the mailto/contact flows end to end.
+- **Secure form submission** (free, self-hosted, no third party): recommended path is a **PHP handler on Plesk** using the domain mailbox — pending confirmation of where email hosting lives post-migration. Cloudflare can't send email free.
 - Still needed from client: testimonials. Optional: monochrome OG banner regen.
 - **Footer** now carries business hours + a Facebook social icon (all pages). **Listing pages** include an **"Also Featured On"** section (`.listing-featured` → `.featured-links`) with StreetEasy + Facebook link buttons — keeps the site synced with external listings. (No embedded FB post — client felt it was too much on the page.)
-- Housekeeping: leftover `CNAME` file; a redundant `cloudflare/workers-autoconfig` branch could be deleted via GitHub UI.
+- Housekeeping: a redundant `cloudflare/workers-autoconfig` branch could be deleted via GitHub UI.
 
 ## Workflow / validation
 

@@ -12,8 +12,8 @@ responsive, single-page design with up-to-date branding and contact details.
 - **Office:** 718.919.1612
 - **Cell:** 917.709.4285
 - **Fax:** 718.919.6360
-- **Email:** darren@darrenkre.com
-- **Web:** darrenkre.com
+- **Email:** darren@darrenkrealestate.com
+- **Web:** darrenkrealestate.com (primary; darrenkre.com is becoming an alias/redirect)
 
 ## Project structure
 
@@ -64,7 +64,7 @@ python3 -m http.server 8000
 1. Push to the `main` branch.
 2. In the repository, go to **Settings → Pages**.
 3. Set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`.
-4. The included `CNAME` file points the site at `darrenkre.com`. Update your
+4. The included `CNAME` file points the site at `darrenkrealestate.com`. Update your
    domain's DNS to point at GitHub Pages to go live on the custom domain.
 
 ## Notes

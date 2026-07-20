@@ -72,7 +72,7 @@
         'Phone: ' + get('phone') + '\n\n' +
         'Message:\n' + get('message') + '\n';
       window.location.href =
-        'mailto:darren@darrenkre.com' +
+        'mailto:darren@darrenkrealestate.com' +
         '?subject=' + encodeURIComponent(subject) +
         '&body=' + encodeURIComponent(body);
       contactForm.reset();
@@ -160,7 +160,7 @@
         'Regarding: ' + cmSubject + '\n\n' +
         'Message:\n' + get('message') + '\n';
       window.location.href =
-        'mailto:darren@darrenkre.com' +
+        'mailto:darren@darrenkrealestate.com' +
         '?subject=' + encodeURIComponent(subject) +
         '&body=' + encodeURIComponent(body);
       closeContact();

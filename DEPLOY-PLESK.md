@@ -21,7 +21,9 @@ Cloudflare Worker deployment without any conflict.
 ## After the first deploy
 
 - **SSL:** Websites & Domains → **SSL/TLS Certificates** → install a free
-  **Let's Encrypt** cert for `darrenkre.com` and `www.darrenkre.com`.
+  **Let's Encrypt** cert for `darrenkre.com` and `www.darrenkre.com` (still needed —
+  the domain now redirects to darrenkrealestate.com, and the redirect itself
+  needs to happen over HTTPS).
 - **Force HTTPS:** enable **"Permanent SEO-safe 301 redirect from HTTP to HTTPS"**
   (Hosting & DNS → Hosting Settings, or the SSL/TLS screen). Do this in the panel
   rather than `.htaccess` to avoid redirect loops.
@@ -34,8 +36,11 @@ Cloudflare Worker deployment without any conflict.
 - `.htaccess` (caching, security headers, 404) applies on Apache/Plesk and is
   **ignored by the Cloudflare Worker** — safe for both.
 - The `CNAME` file in the repo is a leftover GitHub-Pages artifact; Plesk and
-  Cloudflare both ignore it. It can be removed if desired.
-- **When `darrenkre.com` is the canonical live site,** tell me and I'll switch all
-  absolute URLs (Open Graph, Twitter, `sitemap.xml`, `robots.txt`, JSON-LD) from
-  the workers.dev domain to `https://darrenkre.com`, and add `rel="canonical"`
-  tags so search engines index the right domain.
+  Cloudflare both ignore it functionally. It now reads `darrenkrealestate.com`
+  for consistency with the rest of the site.
+- **Domain update:** darrenkrealestate.com is now the canonical live site.
+  All absolute URLs (Open Graph, Twitter, `sitemap.xml`, `robots.txt`, JSON-LD,
+  and the business email addresses) have been switched to it. `darrenkre.com`
+  is expected to become a 301 redirect to darrenkrealestate.com shortly — once
+  that's confirmed live, consider adding `rel="canonical"` tags pointing at
+  darrenkrealestate.com so search engines consolidate on the right domain.
