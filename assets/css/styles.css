@@ -140,11 +140,29 @@ h3 { font-size: 1.45rem; font-weight: 600; }
 }
 .site-nav a.nav-cta:hover { background: #fff; color: var(--ink); }
 
-/* Scrolled / solid state */
+/* Scrolled / glass state */
 .site-header.scrolled {
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(8px);
-  border-bottom-color: var(--line);
+  background: rgba(245, 242, 236, 0.62);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border-bottom-color: rgba(217, 211, 199, 0.55);
+  box-shadow: 0 8px 30px -20px rgba(20, 19, 15, 0.35);
+}
+.site-header.scrolled .brand-name,
+.site-header.scrolled .site-nav a {
+  text-shadow: 0 1px 3px rgba(245, 242, 236, 0.5);
+}
+/* Fall back to a near-opaque bar when the browser can't blur, or the
+   visitor has "reduce transparency" set, so nav text stays legible either way. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header.scrolled { background: rgba(245, 242, 236, 0.96); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .site-header.scrolled {
+    background: rgba(245, 242, 236, 0.96);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 .site-header.scrolled .nav-wrap { padding: 0.9rem 0; }
 .site-header.scrolled .brand-name { color: var(--ink); }
@@ -845,6 +863,7 @@ body.modal-open { overflow: hidden; }
     position: absolute; top: 100%; left: 0; right: 0;
     flex-direction: column; align-items: flex-start; gap: 0;
     background: rgba(255,255,255,0.98);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
     padding: 0.5rem 1.5rem 1.5rem;
