@@ -524,6 +524,8 @@ body.modal-open { overflow: hidden; }
 .oh-date-row { display: flex; flex-direction: column; }
 .oh-date { font-family: var(--font-head); font-size: 1.45rem; color: var(--ink); line-height: 1.15; }
 .oh-time { font-size: 0.95rem; color: var(--muted); letter-spacing: 0.02em; margin-top: 0.1rem; }
+.oh-rsvp { color: var(--accent); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; margin-top: 0.35rem; }
+.oh-rsvp:hover { text-decoration: underline; }
 .oh-rule { width: 48px; height: 2px; background: var(--accent); border: 0; margin: 0 0 1.3rem; }
 .oh-addr { color: var(--ink); font-weight: 600; margin: 0 0 0.15rem; font-family: var(--font-head); font-size: 1.1rem; }
 .oh-loc { color: var(--muted); font-size: 0.9rem; margin: 0 0 1.7rem; }

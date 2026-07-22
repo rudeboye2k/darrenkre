@@ -208,8 +208,16 @@
             '<p class="oh-eyebrow">Open House</p>' +
             '<h2 class="oh-title" id="ohTitle">You&rsquo;re invited.</h2>' +
             '<div class="oh-dates">' +
-              '<div class="oh-date-row"><span class="oh-date">Saturday, July 25</span><span class="oh-time">1:30 &ndash; 3:30 PM EST</span></div>' +
-              '<div class="oh-date-row"><span class="oh-date">Sunday, July 26</span><span class="oh-time">3:30 &ndash; 5:00 PM EST</span></div>' +
+              '<div class="oh-date-row">' +
+                '<span class="oh-date">Saturday, July 25</span>' +
+                '<span class="oh-time">1:30 &ndash; 3:30 PM EST</span>' +
+                '<a class="oh-rsvp" href="https://www.facebook.com/events/963671020058894" target="_blank" rel="noopener">RSVP on Facebook &#8599;</a>' +
+              '</div>' +
+              '<div class="oh-date-row">' +
+                '<span class="oh-date">Sunday, July 26</span>' +
+                '<span class="oh-time">3:30 &ndash; 5:00 PM EST</span>' +
+                '<a class="oh-rsvp" href="https://www.facebook.com/events/1558524752635162" target="_blank" rel="noopener">RSVP on Facebook &#8599;</a>' +
+              '</div>' +
             '</div>' +
             '<hr class="oh-rule" />' +
             '<p class="oh-addr">30 West 13th Street, Residence 4A</p>' +
@@ -217,7 +225,6 @@
             '<div class="oh-actions">' +
               '<a class="btn btn-dark" href="/30West13thStreet.html">View the Listing</a>' +
               '<a class="btn btn-dark-ghost" href="https://streeteasy.com/building/30-west-13-street-new_york/sale/1824381" target="_blank" rel="noopener">StreetEasy &#8599;</a>' +
-              '<a class="btn btn-dark-ghost" href="https://www.facebook.com/share/1EgKLB633w/" target="_blank" rel="noopener">Facebook &#8599;</a>' +
             '</div>' +
           '</div>' +
         '</div>' +
