@@ -8,16 +8,17 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 
 - **NYS broker license #:** 49PE1014348 (New York State **only** — do not add other states)
 - **Office:** 92 Ralph Avenue, Brooklyn, NY 11221 · Office 718.919.1612 · Cell 917.709.4285 · Fax 718.919.6360
-- **Email:** darren@darrenkrealestate.com · **Domain:** darrenkrealestate.com (primary, as of this domain migration — see below)
+- **Email:** info@darrenkrealestate.com · **Domain:** darrenkrealestate.com (primary, as of this domain migration — see below)
 - **Hours:** Monday–Saturday, 11:00 AM – 7:00 PM EST (shown in the footer)
 - **Facebook:** https://www.facebook.com/profile.php?id=61575581998372 (icon in the footer)
 - **Principals:** Darren K. Pearson (broker) and Lydia A. Berry Pearson, CFO (leadership) — lydia@darrenkrealestate.com (unconfirmed — placeholder, get from client)
 
 ## Domain migration (in progress)
 
-- **darrenkrealestate.com is now the primary/canonical domain.** All emails (`darren@`, `lydia@`), the footer's website link, OG/Twitter meta, JSON-LD, `sitemap.xml`, and `robots.txt` were switched to it site-wide (from the old `darrenkre.com` and from the raw `darrenkre.edward-weir.workers.dev` preview).
+- **darrenkrealestate.com is now the primary/canonical domain.** All emails, the footer's website link, OG/Twitter meta, JSON-LD, `sitemap.xml`, and `robots.txt` were switched to it site-wide (from the old `darrenkre.com` and from the raw `darrenkre.edward-weir.workers.dev` preview).
+- **Site-wide contact address is `info@darrenkrealestate.com`** (changed from `darren@darrenkrealestate.com` shortly after the domain migration — one shared inbox for the site's mailto links, contact form, JSON-LD, and Darren's own Gmail signature). Lydia's signature keeps her own `lydia@darrenkrealestate.com` — untouched by this change.
 - **darrenkre.com is becoming an alias** — the client says it will 301-redirect to darrenkrealestate.com "before the end of the week." Until that redirect is confirmed live, don't assume darrenkre.com still serves the old site or its old mailbox — verify before relying on either.
-- **Open/unconfirmed:** whether the `darren@`/`lydia@darrenkrealestate.com` mailboxes actually exist and receive mail yet, and who hosts email once darrenkre.com is just a redirect (Plesk's PHP+email role may or may not carry over). Confirm with the client before treating either as live.
+- **Open/unconfirmed:** whether the `info@`/`lydia@darrenkrealestate.com` mailboxes actually exist and receive mail yet, and who hosts email once darrenkre.com is just a redirect (Plesk's PHP+email role may or may not carry over). Confirm with the client before treating either as live.
 - The `CNAME` file (leftover, otherwise-unused by this Cloudflare/Plesk deploy) now says `darrenkrealestate.com` for consistency.
 
 ## Architecture & deploy
@@ -72,7 +73,7 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 ## Open items / awaiting client
 
 - **Darren to review the SOP** wording (ID / pre-approval / exclusive-agreement answers) — it's a draft using standard NYS defaults.
-- **Confirm the new mailboxes are live**: `darren@darrenkrealestate.com` and `lydia@darrenkrealestate.com` need to actually exist and receive mail before the site's mailto links / Gmail signatures are fully trustworthy. Get Lydia's real email (and any direct phone) to replace the placeholder used in her signature.
+- **Confirm the new mailboxes are live**: `info@darrenkrealestate.com` and `lydia@darrenkrealestate.com` need to actually exist and receive mail before the site's mailto links / Gmail signatures are fully trustworthy. Get Lydia's real email (and any direct phone) to replace the placeholder used in her signature.
 - **Confirm darrenkre.com → darrenkrealestate.com redirect** goes live as planned; once it does, re-test the mailto/contact flows end to end.
 - **Secure form submission** (free, self-hosted, no third party): recommended path is a **PHP handler on Plesk** using the domain mailbox — pending confirmation of where email hosting lives post-migration. Cloudflare can't send email free.
 - Still needed from client: testimonials. Optional: monochrome OG banner regen.

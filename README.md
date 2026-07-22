@@ -12,7 +12,7 @@ responsive, single-page design with up-to-date branding and contact details.
 - **Office:** 718.919.1612
 - **Cell:** 917.709.4285
 - **Fax:** 718.919.6360
-- **Email:** darren@darrenkrealestate.com
+- **Email:** info@darrenkrealestate.com
 - **Web:** darrenkrealestate.com (primary; darrenkre.com is becoming an alias/redirect)
 
 ## Project structure
