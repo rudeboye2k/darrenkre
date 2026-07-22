@@ -507,6 +507,33 @@ body.modal-open { overflow: hidden; }
 .contact-modal-topic strong { color: var(--accent); font-weight: 600; }
 .contact-form--modal { background: none; border: 0; padding: 0; }
 
+/* Open house pop-up */
+.oh-modal { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.25rem; }
+.oh-modal[hidden] { display: none; }
+.oh-backdrop { position: absolute; inset: 0; background: rgba(10,12,16,0.72); animation: fade 0.25s ease; }
+.oh-dialog { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; max-width: 820px; width: 100%; background: var(--paper); box-shadow: 0 30px 80px -20px rgba(0,0,0,0.55); animation: pop 0.3s ease; overflow: hidden; }
+.oh-media { background-size: cover; background-position: center; min-height: 360px; }
+.oh-collage { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 3px; }
+.oh-collage .oh-tile { background-size: cover; background-position: center; background-color: var(--cream-2); }
+.oh-collage .oh-tile:first-child { grid-row: 1 / span 2; }
+.oh-body { padding: 2.6rem 2.4rem; }
+.oh-close { z-index: 3; }
+.oh-eyebrow { color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.72rem; font-weight: 600; margin: 0; }
+.oh-title { font-family: var(--font-head); font-size: 2rem; line-height: 1.1; margin: 0.4rem 0 1.3rem; }
+.oh-dates { display: grid; gap: 0.9rem; margin: 0 0 1.3rem; }
+.oh-date-row { display: flex; flex-direction: column; }
+.oh-date { font-family: var(--font-head); font-size: 1.45rem; color: var(--ink); line-height: 1.15; }
+.oh-time { font-size: 0.95rem; color: var(--muted); letter-spacing: 0.02em; margin-top: 0.1rem; }
+.oh-rule { width: 48px; height: 2px; background: var(--accent); border: 0; margin: 0 0 1.3rem; }
+.oh-addr { color: var(--ink); font-weight: 600; margin: 0 0 0.15rem; font-family: var(--font-head); font-size: 1.1rem; }
+.oh-loc { color: var(--muted); font-size: 0.9rem; margin: 0 0 1.7rem; }
+.oh-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+@media (max-width: 640px) {
+  .oh-dialog { grid-template-columns: 1fr; max-width: 420px; }
+  .oh-media { min-height: 200px; order: -1; }
+  .oh-body { padding: 2rem 1.6rem; }
+}
+
 /* ---------- Page hero (interior pages) ---------- */
 .page-hero {
   position: relative;

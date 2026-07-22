@@ -7,7 +7,8 @@ Project memory for this repo. Keep this current when conventions, architecture, 
 Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New York real estate broker (HUD certified; sales, rentals, management). Built/maintained by developer **Edward Weir** (edward.weir@gmail.com) for the client.
 
 - **NYS broker license #:** 49PE1014348 (New York State **only** — do not add other states)
-- **Office:** 92 Ralph Avenue, Brooklyn, NY 11221 · Office 718.919.1612 · Cell 917.709.4285 · Fax 718.919.6360
+- **Office:** 92 Ralph Avenue, Brooklyn, NY 11221 · Phone 917.709.4285 · Fax 718.919.6360
+  - **Primary/click-to-call number is now 917.709.4285 everywhere** (nav CTA, hero/listing buttons, contact list, form note, footer, JSON-LD). Darren wants to be reachable at all times, so the old 718.919.1612 landline was replaced site-wide and the footer's "Office · Cell" line was consolidated into a single "Phone:" line. Fax (718.919.6360) is unchanged. (Restore the 718 landline as a secondary number if the client asks.)
 - **Email:** info@darrenkrealestate.com · **Domain:** darrenkrealestate.com (primary, as of this domain migration — see below)
 - **Hours:** Monday–Saturday, 11:00 AM – 7:00 PM EST (shown in the footer)
 - **Facebook:** https://www.facebook.com/profile.php?id=61575581998372 (icon in the footer)
@@ -77,7 +78,8 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 - **Confirm darrenkre.com → darrenkrealestate.com redirect** goes live as planned; once it does, re-test the mailto/contact flows end to end.
 - **Secure form submission** (free, self-hosted, no third party): recommended path is a **PHP handler on Plesk** using the domain mailbox — pending confirmation of where email hosting lives post-migration. Cloudflare can't send email free.
 - Still needed from client: testimonials. Optional: monochrome OG banner regen.
-- **Footer** now carries business hours + a Facebook social icon (all pages). **Listing pages** include an **"Also Featured On"** section (`.listing-featured` → `.featured-links`) with StreetEasy + Facebook link buttons — keeps the site synced with external listings. (No embedded FB post — client felt it was too much on the page.)
+- **Footer** now carries business hours + a Facebook social icon (all pages). **Listing pages** include an **"Also Featured On"** section (`.listing-featured` → `.featured-links`) with StreetEasy + Facebook + Open House on Facebook link buttons — keeps the site synced with external listings. (No embedded FB post — client felt it was too much on the page.)
+- **Open house pop-up** (`main.js` IIFE + `.oh-*` CSS): elegant site-wide modal (photo collage + event dates/CTAs), shown once per session and auto-expiring after the last event date (`OH_KEY` + `deadline` in code). Skips on the listing detail page. Buttons: **View the Listing** (→ `/30West13thStreet.html`), **StreetEasy**, **Facebook**. Current event: **Sat July 25, 2026 · 1:30–3:30 PM** and **Sun July 26, 2026 · 3:30–5:00 PM** (deadline `2026-07-27T04:00:00Z`). Update the two `.oh-date-row` lines, `OH_KEY`, and `deadline` for future events; remove the IIFE when there's no upcoming open house.
 - Housekeeping: a redundant `cloudflare/workers-autoconfig` branch could be deleted via GitHub UI.
 
 ## Workflow / validation

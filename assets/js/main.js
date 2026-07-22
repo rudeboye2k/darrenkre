@@ -95,7 +95,7 @@
           '<label>Phone<input type="tel" name="phone" /></label>' +
           '<label>How can we help?<textarea name="message" rows="4" placeholder="I\'m interested in..."></textarea></label>' +
           '<button type="submit" class="btn btn-dark btn-block">Send Message</button>' +
-          '<p class="form-note">&ldquo;Send&rdquo; opens your email app with your message ready to go. Prefer to talk? Call <a href="tel:+17189191612">718.919.1612</a>.</p>' +
+          '<p class="form-note">&ldquo;Send&rdquo; opens your email app with your message ready to go. Prefer to talk? Call <a href="tel:+19177094285">917.709.4285</a>.</p>' +
         '</form>' +
       '</div>' +
     '</div>';
@@ -166,6 +166,93 @@
       closeContact();
     });
   }
+
+  // Open house announcement — elegant pop-up, shown once per browsing
+  // session and only through the last event date (then it stops appearing).
+  (function () {
+    // Skip on a listing detail page — no need to advertise a listing to
+    // someone already viewing it.
+    if (document.querySelector('.listing-hero')) return;
+    var OH_KEY = 'ohSeen-2026-07-25';
+    var deadline = new Date('2026-07-27T04:00:00Z'); // end of Jul 26, 2026 (ET)
+    var seen = false;
+    try { seen = sessionStorage.getItem(OH_KEY) === '1'; } catch (e) {}
+    if (seen || new Date() > deadline) return;
+
+    // Random collage of 3 property photos (shuffled each time it appears)
+    var OH_POOL = [
+      '/assets/listings/30West13thStreet/living-room.webp',
+      '/assets/listings/30West13thStreet/living-dining.webp',
+      '/assets/listings/30West13thStreet/kitchen.webp',
+      '/assets/listings/30West13thStreet/bedroom.webp',
+      '/assets/listings/30West13thStreet/bathroom.webp',
+      '/assets/listings/30West13thStreet/hallway.webp',
+      '/assets/listings/30West13thStreet/main.webp'
+    ];
+    var pics = OH_POOL.slice();
+    for (var pi = pics.length - 1; pi > 0; pi--) {
+      var pj = Math.floor(Math.random() * (pi + 1));
+      var pt = pics[pi]; pics[pi] = pics[pj]; pics[pj] = pt;
+    }
+    var collage = pics.slice(0, 3).map(function (src) {
+      return '<div class="oh-tile" style="background-image:url(\'' + src + '\')"></div>';
+    }).join('');
+
+    var html =
+      '<div class="oh-modal" id="ohModal" hidden role="dialog" aria-modal="true" aria-labelledby="ohTitle">' +
+        '<div class="oh-backdrop" data-oh-close></div>' +
+        '<div class="oh-dialog">' +
+          '<button class="bio-close oh-close" type="button" data-oh-close aria-label="Close announcement">&times;</button>' +
+          '<div class="oh-media oh-collage">' + collage + '</div>' +
+          '<div class="oh-body">' +
+            '<p class="oh-eyebrow">Open House</p>' +
+            '<h2 class="oh-title" id="ohTitle">You&rsquo;re invited.</h2>' +
+            '<div class="oh-dates">' +
+              '<div class="oh-date-row"><span class="oh-date">Saturday, July 25</span><span class="oh-time">1:30 &ndash; 3:30 PM EST</span></div>' +
+              '<div class="oh-date-row"><span class="oh-date">Sunday, July 26</span><span class="oh-time">3:30 &ndash; 5:00 PM EST</span></div>' +
+            '</div>' +
+            '<hr class="oh-rule" />' +
+            '<p class="oh-addr">30 West 13th Street, Residence 4A</p>' +
+            '<p class="oh-loc">Greenwich Village &middot; Manhattan</p>' +
+            '<div class="oh-actions">' +
+              '<a class="btn btn-dark" href="/30West13thStreet.html">View the Listing</a>' +
+              '<a class="btn btn-dark-ghost" href="https://streeteasy.com/building/30-west-13-street-new_york/sale/1824381" target="_blank" rel="noopener">StreetEasy &#8599;</a>' +
+              '<a class="btn btn-dark-ghost" href="https://www.facebook.com/share/1EgKLB633w/" target="_blank" rel="noopener">Facebook &#8599;</a>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    var wrap = document.createElement('div');
+    wrap.innerHTML = html;
+    var oh = wrap.firstChild;
+    document.body.appendChild(oh);
+
+    var ohLastFocused = null;
+    var markSeen = function () { try { sessionStorage.setItem(OH_KEY, '1'); } catch (e) {} };
+    var closeOH = function () {
+      oh.hidden = true;
+      document.body.classList.remove('modal-open');
+      markSeen();
+      if (ohLastFocused) ohLastFocused.focus();
+    };
+    var openOH = function () {
+      ohLastFocused = document.activeElement;
+      oh.hidden = false;
+      document.body.classList.add('modal-open');
+      var c = oh.querySelector('.oh-close');
+      if (c) c.focus();
+    };
+
+    oh.querySelectorAll('[data-oh-close]').forEach(function (el) {
+      el.addEventListener('click', function () { closeOH(); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!oh.hidden && e.key === 'Escape') closeOH();
+    });
+
+    window.setTimeout(openOH, 700);
+  })();
 
   // Mortgage estimator (listing pages). Reusable: reads the property price
   // from the .mortgage element's data-price attribute.

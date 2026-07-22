@@ -9,8 +9,7 @@ responsive, single-page design with up-to-date branding and contact details.
 ## Contact
 
 - **Address:** 92 Ralph Avenue, Brooklyn, NY 11221
-- **Office:** 718.919.1612
-- **Cell:** 917.709.4285
+- **Phone:** 917.709.4285
 - **Fax:** 718.919.6360
 - **Email:** info@darrenkrealestate.com
 - **Web:** darrenkrealestate.com (primary; darrenkre.com is becoming an alias/redirect)
