@@ -215,7 +215,7 @@
               '</div>' +
               '<div class="oh-date-row">' +
                 '<span class="oh-date">Sunday, July 26</span>' +
-                '<span class="oh-time">3:30 &ndash; 5:00 PM EST</span>' +
+                '<span class="oh-time">2:00 &ndash; 4:00 PM EST</span>' +
                 '<a class="oh-rsvp" href="https://www.facebook.com/events/1558524752635162" target="_blank" rel="noopener">RSVP on Facebook &#8599;</a>' +
               '</div>' +
             '</div>' +
