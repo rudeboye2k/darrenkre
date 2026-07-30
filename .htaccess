@@ -4,6 +4,16 @@
 # redirect loops behind Plesk's nginx proxy. This file is ignored by the
 # Cloudflare Worker, so it is safe to keep in the repo for both deployments.
 
+# Domain migration: darrenkre.com is an alias — send it to the canonical
+# darrenkrealestate.com, preserving the requested path. Guarded on HTTP_HOST so
+# it can only ever fire for the old domain (never for darrenkrealestate.com),
+# which keeps it loop-safe if Plesk is ever pointed at both.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^(www\.)?darrenkre\.com$ [NC]
+  RewriteRule ^(.*)$ https://darrenkrealestate.com/$1 [R=301,L]
+</IfModule>
+
 # Custom error page
 ErrorDocument 404 /404.html
 
