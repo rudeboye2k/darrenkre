@@ -213,10 +213,12 @@
               '<div class="oh-date-row">' +
                 '<span class="oh-date">Saturday, August 1</span>' +
                 '<span class="oh-time">1:00 &ndash; 3:00 PM ET</span>' +
+                '<a class="oh-rsvp" href="https://fb.me/e/c0wENJZeo" target="_blank" rel="noopener">RSVP on Facebook &#8599;</a>' +
               '</div>' +
               '<div class="oh-date-row">' +
                 '<span class="oh-date">Sunday, August 2</span>' +
                 '<span class="oh-time">1:00 &ndash; 3:30 PM ET</span>' +
+                '<a class="oh-rsvp" href="https://fb.me/e/22kowwhhwZ" target="_blank" rel="noopener">RSVP on Facebook &#8599;</a>' +
               '</div>' +
             '</div>' +
             '<hr class="oh-rule" />' +

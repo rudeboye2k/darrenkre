@@ -1,0 +1,7 @@
+# Files in the repo root that should NOT be served as public static assets.
+# (Workers Assets serves the repo root, so anything not listed here is public.)
+/src
+wrangler.jsonc
+.htaccess
+CLAUDE.md
+DEPLOY-PLESK.md

@@ -18,17 +18,21 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 
 - **darrenkrealestate.com is now the primary/canonical domain.** All emails, the footer's website link, OG/Twitter meta, JSON-LD, `sitemap.xml`, and `robots.txt` were switched to it site-wide (from the old `darrenkre.com` and from the raw `darrenkre.edward-weir.workers.dev` preview).
 - **Site-wide contact address is `info@darrenkrealestate.com`** (changed from `darren@darrenkrealestate.com` shortly after the domain migration — one shared inbox for the site's mailto links, contact form, JSON-LD, and Darren's own Gmail signature). Lydia's signature keeps her own `lydia@darrenkrealestate.com` — untouched by this change.
-- **darrenkre.com is becoming an alias** — the client says it will 301-redirect to darrenkrealestate.com "before the end of the week." Until that redirect is confirmed live, don't assume darrenkre.com still serves the old site or its old mailbox — verify before relying on either.
-- **Open/unconfirmed:** whether the `info@`/`lydia@darrenkrealestate.com` mailboxes actually exist and receive mail yet, and who hosts email once darrenkre.com is just a redirect (Plesk's PHP+email role may or may not carry over). Confirm with the client before treating either as live.
-- The `CNAME` file (leftover, otherwise-unused by this Cloudflare/Plesk deploy) now says `darrenkrealestate.com` for consistency.
+- **darrenkre.com is an alias and 301-redirects** to darrenkrealestate.com. The redirect is implemented **in the Worker** (`src/worker.js`), hostname-guarded so it can only fire for `darrenkre.com`/`www.darrenkre.com` — never for the canonical domain or the `workers.dev` preview, so it cannot loop. **Prerequisite:** darrenkre.com must be attached to the `darrenkre` Worker as a Custom Domain / route, or the Worker code never runs for it. (A dashboard **Redirect Rule** is the equivalent no-code alternative.)
+- **Email is on Google (Google Workspace/Gmail), not Microsoft.** MX records are independent of the web redirect, so mail to `@darrenkrealestate.com` is unaffected by darrenkre.com forwarding.
+- **Open/unconfirmed:** whether the `info@`/`lydia@darrenkrealestate.com` mailboxes actually exist and receive mail yet. Confirm with the client before treating either as live.
+- The `CNAME` file (leftover, unused by this Cloudflare deploy) says `darrenkrealestate.com` for consistency.
 
 ## Architecture & deploy
 
 - **Static HTML/CSS/JS. No build step, no framework.** Plain files served as-is.
-- **Two live domains:**
-  - **darrenkrealestate.com** — **Cloudflare** (Worker, `wrangler.jsonc`, `assets.directory: "."`). Auto-updates from GitHub on every push — the reliable one. Raw Workers preview (same deployment): `https://darrenkre.edward-weir.workers.dev/` (no longer referenced anywhere in the site's own markup, now that OG/sitemap point at the custom domain).
-  - **darrenkre.com** — GoDaddy hosting via **Plesk**. Updates only when Plesk **re-pulls from GitHub** — so it can lag behind `main` and serve **cached CSS/JS/images/HTML**. If a recent change doesn't appear there, it's almost always stale Plesk cache, not a code bug. Becoming an alias/redirect to darrenkrealestate.com (see Domain migration above).
-- **Host-independence lesson:** don't rely on CSS/JS alone for a visual that must look identical on both hosts while Plesk may be stale — bake it into the asset when practical (e.g., Darren's bio photo is a **grayscale image file**, not a CSS `grayscale()` filter, so it's B&W even on cached Plesk CSS). This matters less once darrenkre.com is a pure redirect, since visitors land on the fresh Cloudflare copy either way.
+- **Hosting is 100% Cloudflare** (Plesk/GoDaddy is out of the picture — ignore any older note saying otherwise).
+  - **darrenkrealestate.com** — the canonical domain, served by the `darrenkre` **Worker** (`wrangler.jsonc` + `src/worker.js`, `assets.directory: "."` with `binding: "ASSETS"`). **Auto-deploys from GitHub on every push to `main`.** Raw Workers preview (same deployment): `https://darrenkre.edward-weir.workers.dev/`.
+  - **darrenkre.com** — alias only; 301s to the canonical domain via the Worker (see Domain migration above).
+- **The Worker is a thin shim, not an app:** its only job is the darrenkre.com 301; every other request falls through to `env.ASSETS.fetch(request)` unchanged. Keep it that way — don't grow app logic there.
+- **`.assetsignore`** keeps non-public repo files (`/src`, `wrangler.jsonc`, `.htaccess`, `CLAUDE.md`, `DEPLOY-PLESK.md`) from being served as static assets, since `assets.directory` is the repo root.
+- **`.htaccess` / `DEPLOY-PLESK.md` are dead weight** — Apache-only, and nothing reads them now that Plesk is gone. Safe to delete whenever; kept only as history.
+- **Host-independence lesson (still worth keeping):** bake a required visual into the asset rather than relying on CSS alone when practical — e.g. the bio photos are **grayscale image files**, not a CSS `grayscale()` filter, so they survive any stale-CSS scenario.
 - `git` default branch is **`main`**. Users sometimes upload images straight to GitHub ("Add files via upload" commits) — `git pull --rebase origin main` before working if a file is "missing" locally.
 
 ## Design system (luxury editorial)
@@ -55,7 +59,7 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 - **Match surrounding style** in HTML/CSS/JS; no new dependencies or frameworks.
 - **JS:** one IIFE in `main.js`, `var`, feature-guarded (`if (el) {…}`), ES5-compatible.
 - **Footer is duplicated across all pages** and must stay in sync (nav links, legal block, license #). When editing the footer, apply to every page (`index, about, articles, resources, 30West13thStreet, fair-housing, 404`).
-- **Cache-busting:** `styles.css` and `main.js` are linked with a `?v=N` query on every page (currently `?v=2`). **Bump `N` on all pages whenever CSS/JS changes** so browsers (and the stale Plesk cache) fetch the new file instead of an old cached one. This does NOT fix Plesk serving stale HTML — that still needs a Plesk re-pull from GitHub.
+- **Cache-busting:** `styles.css` and `main.js` are linked with a `?v=N` query on every page (currently `?v=16`). **Bump `N` on all pages whenever CSS/JS changes** so browsers fetch the new file instead of an old cached one.
 - **Do not** put the AI model identifier in commits, PRs, or any repo artifact.
 
 ## Features implemented
@@ -69,18 +73,18 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 - **Fair Housing & Compliance page** + site-wide footer legal block: official **government** notice links (NYS DOS, NYS DHR, NYC CCHR — always linked to source, never a third-party PDF), Darren's own **Standard Operating Procedure** (plus a link to the official NYS DOS SOP page), NYS license #, data-source/verification disclaimer, and anti-scam consumer notice. Adapted for **NY only** (no multi-state list, no machine-translation disclaimer).
 - **Equal Housing Opportunity** logo (`assets/img/equal-housing.svg`, `currentColor`) + "Fair Housing & Equal Opportunity" line near listings on home + listing page.
 - **Contact pop-up** (`main.js`): one modal injected site-wide, opened by any `[data-contact]` button with a `data-subject`. Subjects: **Website Inquiry, Financing, Foreclosures, Leasing / Building Inquiry, Listing — 30 West 13th St, 4A**. Submits via **`mailto:`**, then **resets the form and closes** the pop-up. Inline home contact form also resets after send. Built so the send step can later be swapped for a real backend in one place.
-- **Contact = `mailto:` for now** (client chose this; Outlook users — no Google Forms). Footer/nav "Contact" links still scroll to the home contact section.
+- **Contact = `mailto:` for now** (client chose this). Footer/nav "Contact" links still scroll to the home contact section.
 
 ## Open items / awaiting client
 
 - **Darren to review the SOP** wording (ID / pre-approval / exclusive-agreement answers) — it's a draft using standard NYS defaults.
 - **Confirm the new mailboxes are live**: `info@darrenkrealestate.com` and `lydia@darrenkrealestate.com` need to actually exist and receive mail before the site's mailto links / Gmail signatures are fully trustworthy. Get Lydia's real email (and any direct phone) to replace the placeholder used in her signature.
 - **Confirm darrenkre.com → darrenkrealestate.com redirect** goes live as planned; once it does, re-test the mailto/contact flows end to end.
-- **Secure form submission** (free, self-hosted, no third party): recommended path is a **PHP handler on Plesk** using the domain mailbox — pending confirmation of where email hosting lives post-migration. Cloudflare can't send email free.
+- **Secure form submission:** the old "PHP handler on Plesk" plan is **dead** (no Plesk, and email is on Google now). On all-Cloudflare the options are a **Worker + an email API** (Resend/Postmark/SendGrid free tier, or MailChannels-style relay) or a hosted form service. Cloudflare alone still can't send email. Until then the site stays on `mailto:`.
 - Still needed from client: testimonials. Optional: monochrome OG banner regen.
 - **Footer** now carries business hours + a Facebook social icon (all pages). **Listing pages** include an **"Also Featured On"** section (`.listing-featured` → `.featured-links`) with StreetEasy + Facebook + Open House on Facebook link buttons — keeps the site synced with external listings. (No embedded FB post — client felt it was too much on the page.)
 - **Open house pop-up** (`main.js` IIFE + `.oh-*` CSS): elegant site-wide modal (photo collage + event dates/CTAs), shown once per session and auto-expiring after the last event date (`OH_KEY` + `deadline` in code). Skips on the listing detail page. Buttons: **View the Listing** (→ `/30West13thStreet.html`) and **StreetEasy**. Current event: **Sat August 1, 2026 · 1:00–3:00 PM ET** and **Sun August 2, 2026 · 1:00–3:30 PM ET** — deadline `2026-08-02T19:30:00Z`, i.e. it stops appearing the moment Sunday's session ends. Update the two `.oh-date-row` lines, `OH_KEY` (bump it so people who dismissed the previous pop-up see the new one), and `deadline` for future events; remove the IIFE when there's no upcoming open house.
-  - **Per-date Facebook event links** (`.oh-rsvp` in the pop-up + `.featured-link` "Open House · <date>" buttons on the listing) are added when Darren creates a new FB event per date. They were removed for the August event pending new links — re-add them when supplied. Darren makes **new events each time**, so always replace the URLs rather than reusing old ones.
+  - **Per-date Facebook event links** (`.oh-rsvp` in the pop-up + `.featured-link` "Open House · <date>" buttons on the listing) are added when Darren creates a new FB event per date. Current links are `fb.me` short URLs: Sat Aug 1 = `https://fb.me/e/c0wENJZeo`, Sun Aug 2 = `https://fb.me/e/22kowwhhwZ`. Darren makes **new events each time**, so always replace the URLs rather than reusing old ones.
 - Housekeeping: a redundant `cloudflare/workers-autoconfig` branch could be deleted via GitHub UI.
 
 ## Workflow / validation

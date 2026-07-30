@@ -1,12 +1,17 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "darrenkre",
+  "main": "src/worker.js",
   "compatibility_date": "2026-06-28",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    // Served from the repo root — the site is plain static HTML/CSS/JS.
+    // "binding" exposes the assets to src/worker.js as env.ASSETS so the worker
+    // can 301 the old darrenkre.com alias and serve everything else untouched.
+    "directory": ".",
+    "binding": "ASSETS"
   },
   "compatibility_flags": [
     "nodejs_compat"
