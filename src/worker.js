@@ -19,7 +19,18 @@ export default {
       url.hostname = CANONICAL_HOST;
       url.protocol = 'https:';
       url.port = '';
-      return Response.redirect(url.toString(), 301);
+      // Built by hand rather than with Response.redirect() so we can bound how
+      // long the 301 is cached. Browsers cache permanent redirects
+      // indefinitely by default (Safari especially), which makes the target
+      // impossible to change without asking every visitor to clear their
+      // cache. An hour keeps it cheap but revocable.
+      return new Response(null, {
+        status: 301,
+        headers: {
+          'Location': url.toString(),
+          'Cache-Control': 'max-age=3600'
+        }
+      });
     }
 
     return env.ASSETS.fetch(request);
