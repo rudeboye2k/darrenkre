@@ -2,6 +2,4 @@
 # (Workers Assets serves the repo root, so anything not listed here is public.)
 /src
 wrangler.jsonc
-.htaccess
 CLAUDE.md
-DEPLOY-PLESK.md

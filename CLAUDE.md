@@ -30,8 +30,8 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
   - **darrenkrealestate.com** — the canonical domain, served by the `darrenkre` **Worker** (`wrangler.jsonc` + `src/worker.js`, `assets.directory: "."` with `binding: "ASSETS"`). **Auto-deploys from GitHub on every push to `main`.** Raw Workers preview (same deployment): `https://darrenkre.edward-weir.workers.dev/`.
   - **darrenkre.com** — alias only; 301s to the canonical domain via the Worker (see Domain migration above).
 - **The Worker is a thin shim, not an app:** its only job is the darrenkre.com 301; every other request falls through to `env.ASSETS.fetch(request)` unchanged. Keep it that way — don't grow app logic there.
-- **`.assetsignore`** keeps non-public repo files (`/src`, `wrangler.jsonc`, `.htaccess`, `CLAUDE.md`, `DEPLOY-PLESK.md`) from being served as static assets, since `assets.directory` is the repo root.
-- **`.htaccess` / `DEPLOY-PLESK.md` are dead weight** — Apache-only, and nothing reads them now that Plesk is gone. Safe to delete whenever; kept only as history.
+- **`.assetsignore`** keeps non-public repo files (`/src`, `wrangler.jsonc`, `CLAUDE.md`) from being served as static assets, since `assets.directory` is the repo root.
+- The old Apache-era files (`.htaccess`, `DEPLOY-PLESK.md`) were **deleted** — nothing read them once Plesk was gone.
 - **Host-independence lesson (still worth keeping):** bake a required visual into the asset rather than relying on CSS alone when practical — e.g. the bio photos are **grayscale image files**, not a CSS `grayscale()` filter, so they survive any stale-CSS scenario.
 - `git` default branch is **`main`**. Users sometimes upload images straight to GitHub ("Add files via upload" commits) — `git pull --rebase origin main` before working if a file is "missing" locally.
 
