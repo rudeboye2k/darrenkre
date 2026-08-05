@@ -11,7 +11,14 @@
     // "binding" exposes the assets to src/worker.js as env.ASSETS so the worker
     // can 301 the old darrenkre.com alias and serve everything else untouched.
     "directory": ".",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // REQUIRED for the darrenkre.com redirect to work. By default Workers
+    // Assets serves a matching static file *before* invoking the worker, so
+    // "/" would resolve to index.html and src/worker.js would never run —
+    // the old domain would serve the site instead of 301ing. This forces every
+    // request through the worker first; it checks the hostname, then falls
+    // through to env.ASSETS.fetch() for normal traffic.
+    "run_worker_first": true
   },
   "compatibility_flags": [
     "nodejs_compat"
