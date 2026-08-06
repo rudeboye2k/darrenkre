@@ -31,7 +31,7 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 - **Hosting is 100% Cloudflare** (Plesk/GoDaddy is out of the picture — ignore any older note saying otherwise).
   - **darrenkrealestate.com** — the canonical domain, served by the `darrenkre` **Worker** (`wrangler.jsonc` + `src/worker.js`, `assets.directory: "."` with `binding: "ASSETS"`). **Auto-deploys from GitHub on every push to `main`.** Raw Workers preview (same deployment): `https://darrenkre.edward-weir.workers.dev/`.
   - **darrenkre.com** — alias only; 301s to the canonical domain via the Worker (see Domain migration above).
-- **The Worker is a thin shim, not an app:** its only job is the darrenkre.com 301; every other request falls through to `env.ASSETS.fetch(request)` unchanged. Keep it that way — don't grow app logic there.
+- **The Worker is a thin shim, not an app:** its jobs are (a) the darrenkre.com 301 and (b) setting the light security headers (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`) that used to live in `.htaccess`. Everything else falls through to `env.ASSETS.fetch(request)`. Keep it that way — don't grow app logic there. (No CSP yet — it would need auditing against the Google Fonts and Matterport embeds.)
 - **`assets.run_worker_first: true` is load-bearing — do not remove it.** Workers Assets serves a matching static file *before* invoking the worker by default, so `/` resolves to `index.html` and `src/worker.js` never runs. Symptom when it's missing: darrenkre.com serves the site normally and the URL never changes, instead of 301ing. The flag forces every request through the worker first.
 - **`.assetsignore`** keeps non-public repo files (`/src`, `wrangler.jsonc`, `CLAUDE.md`) from being served as static assets, since `assets.directory` is the repo root.
 - The old Apache-era files (`.htaccess`, `DEPLOY-PLESK.md`) were **deleted** — nothing read them once Plesk was gone.
@@ -58,6 +58,8 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 
 ## Conventions
 
+- **Every page carries `<link rel="canonical">`** pointing at its darrenkrealestate.com URL — the `workers.dev` preview serves the identical site, so without this Google can index the preview as duplicate content. Add one to any new page.
+- **The listing page carries `Apartment` + `Offer` JSON-LD** (price, beds, baths, floor size, amenities). **Keep the JSON-LD price in sync with the three other price spots** when the ask changes: hero, `data-price`, and the estimator's visible input.
 - **Images → WebP.** Convert uploads with Pillow (`quality` ~72–82, `method=6`); name with clean slugs; remove the original JPG/PNG after converting. Keep files small.
 - **Match surrounding style** in HTML/CSS/JS; no new dependencies or frameworks.
 - **JS:** one IIFE in `main.js`, `var`, feature-guarded (`if (el) {…}`), ES5-compatible.

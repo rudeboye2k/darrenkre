@@ -198,7 +198,7 @@ h3 { font-size: 1.45rem; font-weight: 600; }
 .hero::before {
   content: "";
   position: absolute; inset: 0; z-index: 0;
-  background: url("../img/harbor-view.jpg") center/cover no-repeat;
+  background: url("../img/harbor-view.webp") center/cover no-repeat;
   transform-origin: center;
   animation: heroZoom 28s ease-in-out infinite alternate;
   will-change: transform;
@@ -548,7 +548,7 @@ body.modal-open { overflow: hidden; }
 .page-hero::before {
   content: "";
   position: absolute; inset: 0; z-index: 0;
-  background: url("../img/harbor-view.jpg") center/cover no-repeat;
+  background: url("../img/harbor-view.webp") center/cover no-repeat;
   filter: grayscale(100%) contrast(1.05);
 }
 .page-hero-overlay {

@@ -8,6 +8,15 @@
 var OLD_HOST = /^(www\.)?darrenkre\.com$/i;
 var CANONICAL_HOST = 'darrenkrealestate.com';
 
+// Carried over from the old Apache .htaccess so the site keeps sending them
+// now that Cloudflare serves everything. Deliberately conservative — no CSP,
+// which would need auditing against the Google Fonts and Matterport embeds.
+var SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Referrer-Policy': 'strict-origin-when-cross-origin'
+};
+
 export default {
   async fetch(request, env) {
     var url = new URL(request.url);
@@ -33,6 +42,13 @@ export default {
       });
     }
 
-    return env.ASSETS.fetch(request);
+    // Normal traffic: serve the static asset, with the light security headers
+    // that used to live in .htaccess back when Plesk/Apache served the site.
+    var res = await env.ASSETS.fetch(request);
+    res = new Response(res.body, res); // headers on the original are immutable
+    for (var name in SECURITY_HEADERS) {
+      res.headers.set(name, SECURITY_HEADERS[name]);
+    }
+    return res;
   }
 };
