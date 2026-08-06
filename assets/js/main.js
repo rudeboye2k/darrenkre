@@ -173,10 +173,10 @@
     // Skip on a listing detail page — no need to advertise a listing to
     // someone already viewing it.
     if (document.querySelector('.listing-hero')) return;
-    var OH_KEY = 'ohSeen-2026-08-01';
-    // Stops appearing the moment Sunday's session ends: Aug 2, 2026 3:30 PM ET
-    // (EDT = UTC-4, so 19:30 UTC).
-    var deadline = new Date('2026-08-02T19:30:00Z');
+    var OH_KEY = 'ohSeen-2026-08-08';
+    // Stops appearing the moment Sunday's session ends: Aug 9, 2026 4:00 PM ET
+    // (EDT = UTC-4, so 20:00 UTC).
+    var deadline = new Date('2026-08-09T20:00:00Z');
     var seen = false;
     try { seen = sessionStorage.getItem(OH_KEY) === '1'; } catch (e) {}
     if (seen || new Date() > deadline) return;
@@ -211,14 +211,12 @@
             '<h2 class="oh-title" id="ohTitle">You&rsquo;re invited.</h2>' +
             '<div class="oh-dates">' +
               '<div class="oh-date-row">' +
-                '<span class="oh-date">Saturday, August 1</span>' +
+                '<span class="oh-date">Saturday, August 8</span>' +
                 '<span class="oh-time">1:00 &ndash; 3:00 PM ET</span>' +
-                '<a class="oh-rsvp" href="https://fb.me/e/c0wENJZeo" target="_blank" rel="noopener">RSVP on Facebook &#8599;</a>' +
               '</div>' +
               '<div class="oh-date-row">' +
-                '<span class="oh-date">Sunday, August 2</span>' +
-                '<span class="oh-time">1:00 &ndash; 3:30 PM ET</span>' +
-                '<a class="oh-rsvp" href="https://fb.me/e/22kowwhhwZ" target="_blank" rel="noopener">RSVP on Facebook &#8599;</a>' +
+                '<span class="oh-date">Sunday, August 9</span>' +
+                '<span class="oh-time">2:00 &ndash; 4:00 PM ET</span>' +
               '</div>' +
             '</div>' +
             '<hr class="oh-rule" />' +
