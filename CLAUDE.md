@@ -64,7 +64,7 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 - **Match surrounding style** in HTML/CSS/JS; no new dependencies or frameworks.
 - **JS:** one IIFE in `main.js`, `var`, feature-guarded (`if (el) {…}`), ES5-compatible.
 - **Footer is duplicated across all pages** and must stay in sync (nav links, legal block, license #). When editing the footer, apply to every page (`index, about, articles, resources, 30West13thStreet, fair-housing, 404`).
-- **Cache-busting:** `styles.css` and `main.js` are linked with a `?v=N` query on every page (currently `?v=16`). **Bump `N` on all pages whenever CSS/JS changes** so browsers fetch the new file instead of an old cached one.
+- **Cache-busting:** `styles.css` and `main.js` are linked with a `?v=N` query on every page (currently `?v=21`). **Bump `N` on all pages whenever CSS/JS changes** so browsers fetch the new file instead of an old cached one.
 - **Do not** put the AI model identifier in commits, PRs, or any repo artifact.
 
 ## Features implemented

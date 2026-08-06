@@ -33,7 +33,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img { max-width: 100%; display: block; }
+/* height:auto is required alongside the intrinsic width/height attributes on
+   <img>: max-width shrinks the rendered width, and without this the attribute
+   height would be kept and the image would squash. The attributes still give
+   the browser an aspect ratio up front, which is what prevents layout shift.
+   Components that size their images explicitly (.brand-logo, .leader-avatar)
+   are more specific and still win. */
+img { max-width: 100%; height: auto; display: block; }
 
 a { color: var(--ink); text-decoration: none; transition: color 0.2s ease; }
 a:hover { color: var(--accent); }
