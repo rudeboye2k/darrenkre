@@ -55,6 +55,7 @@ Website for **Darren K Real Estate, LLC** — a Brooklyn-based, licensed New Yor
 - `assets/css/styles.css` — all styles (single file). `assets/js/main.js` — all JS (single IIFE, vanilla, ES5-style `var`).
 - `assets/img/` — site imagery; `assets/img/portfolio/` — building exterior WebPs; `assets/listings/<Address>/` — per-listing photos.
 - `sitemap.xml`, `robots.txt`, favicons in `assets/img/`.
+- `photo-archive/` — **unlisted internal report** on the property-photo recovery work (`index.html` summary + `finds.html` full 428-image inventory, with its own self-contained `photo-archive/assets/`). Reachable only by direct link at `/photo-archive/`; both pages carry `<meta name="robots" content="noindex, nofollow">` and are **deliberately not linked from any nav, footer, or `sitemap.xml`**. It is labelled "Internal Report" and contains candid critique of the client's own imagery plus internal file paths and backup references — **check with Edward before linking it anywhere public-facing.** Do not add a `Disallow` for it in `robots.txt`: that would stop crawlers reading the `noindex`, which is the stronger signal. Keeps its own `assets/` dir so nothing collides with the site's.
 
 ## Conventions
 
