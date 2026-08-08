@@ -92,3 +92,13 @@ button.shot:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .lb-next{right:6px}
   .lb-grp{font-size:18px}
 }
+
+/* ---- plain-language captions ---- */
+.ps{font-family:var(--font-body);font-size:12.5px;font-weight:500;color:var(--ink);
+  line-height:1.35}
+figure.f figcaption .qb{margin-top:2px;padding-top:0}
+figure.f figcaption .dim{font-family:var(--font-body);font-size:11px;color:var(--muted)}
+figure.f figcaption .fn{margin-top:auto;padding-top:7px;font-size:9.5px;color:#9a948a;
+  border-top:1px solid var(--line-soft)}
+.lb-meta{font-family:var(--font-body);font-size:15px;color:#ddd6c9;font-weight:400}
+.lb-name{font-size:11px;color:#7e776d}
